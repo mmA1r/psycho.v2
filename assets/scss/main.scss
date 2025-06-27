@@ -1,0 +1,6 @@
+@use 'variables';
+@use 'base';
+
+:root {
+    --color-main: #{$color_main};
+}
