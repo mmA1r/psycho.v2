@@ -1,12 +1,16 @@
+import { resolve } from 'path'
+
 export default defineNuxtConfig({
     compatibilityDate: '2025-05-15',
-    //devtools: { enabled: true },
-    alias: {
-        image: '/<rootDir>/assets/img/'
-    },
 
     css: ['~/assets/scss/main.scss'],
-    modules: ['@vueuse/nuxt'],
+
+    modules: ['@vueuse/nuxt', '@pinia/nuxt'],
+
+    alias: {
+        image: resolve(__dirname, 'assets/img'),
+        hooks: resolve(__dirname, 'composables'),
+    },
 
     vite: {
         css: {
