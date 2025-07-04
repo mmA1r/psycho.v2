@@ -1,0 +1,24 @@
+@use 'base' as *;
+@use 'responsive' as *;
+@use 'variables' as *;
+@use 'atoms' as *;
+
+:root {
+    --color__main_light: #637D7Cff;
+    --color__light-accent_light: #9AAEA8ff;
+    --color__dark-accent_light: #132F23ff;
+    --color__accent_light: #699198ff;
+    --color__shadow_light: #325660ff;
+
+    --color__main_dark: #B3BAD1ff;
+    --color__light-accent_dark: #8C95AEff;
+    --color__dark-accent_dark: #342E2Eff;
+    --color__accent_dark: #DAE0F1ff;
+    --color__shadow_dark: #62677Aff;
+
+    --color-transition-time: #{$color-transition-time};
+}
+
+html {
+    background-color: var(--color__main);
+}

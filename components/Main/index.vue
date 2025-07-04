@@ -1,36 +1,39 @@
 <script setup lang="ts">
-    import { ref, onMounted, onUnmounted } from 'vue'
-    const section = ref<HTMLElement | null>(null);
-    const speed = 0.3;
+    //import { ref, onMounted, onUnmounted } from 'vue'
+    //const section = ref<HTMLElement | null>(null);
+    //const speed = 0.3;
 
-    let onScroll: () => void;
+    //let onScroll: () => void;
 
-    onMounted(() => {
-        onScroll = () => {
-            const y = window.scrollY;
-            const offset = y * speed;
-            if (section.value) {
-                section.value.style.transform = `translateY(${offset}px)`;
-            }
-        }
+    //onMounted(() => {
+    //    onScroll = () => {
+    //        const y = window.scrollY;
+    //        const offset = y * speed;
+    //        if (section.value) {
+    //            section.value.style.transform = `translateY(${offset}px)`;
+    //        }
+    //    }
 
-        window.addEventListener('scroll', onScroll, { passive: true })
-    });
+    //    window.addEventListener('scroll', onScroll, { passive: true })
+    //});
 
-    onUnmounted(() => {
-        window.removeEventListener('scroll', onScroll)
-    });
+    //onUnmounted(() => {
+    //    window.removeEventListener('scroll', onScroll)
+    //});
 </script>
 
 <template>
-    <section class="main-section" :class="{ 'parallax': true }" ref="section">
+    <section class="section">
+
+    </section>
+    <!--<section class="main-section" :class="{ 'parallax': true }" ref="section">
         <div class="overlay"/>
 
         <div class="content">
             <h1 class="title">Психолог</h1>
             <p class="subtitle">Екатерина Матвеева</p>
         </div>
-    </section>
+    </section>-->
 </template>
   
   

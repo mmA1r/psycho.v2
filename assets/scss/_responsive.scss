@@ -1,0 +1,13 @@
+$bp-desktop: 768px;
+
+@mixin mobile {
+    @media (max-width: #{$bp-desktop - 0.02px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $bp-desktop) {
+        @content;
+    }
+}

@@ -13,6 +13,7 @@
     "@lucien144/vue3-parallaxy": "^0.1.2",
     "@pinia/nuxt": "^0.11.1",
     "@vueuse/nuxt": "^13.4.0",
+    "gsap": "^3.13.0",
     "nuxt": "^3.17.5",
     "pinia": "^3.0.3",
     "sass": "^1.89.2",
