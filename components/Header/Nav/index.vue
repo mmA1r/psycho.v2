@@ -1,36 +1,39 @@
 <script setup>
-    import { onClickOutside, useDebounceFn } from '@vueuse/core';
     import { useBreakpoint } from 'hooks/useBreakpoints';
-
+    import { useMenuStore } from 'stores/menu';
+    
     const { isMobile } = useBreakpoint();
-    const isMenuOpen = ref(false);
-    const menuRef = ref(null);
+    const menu = useMenuStore();
 
     const list = [
         { title: 'Обо мне' },
         { title: 'Консультация' },
         { title: 'Контакты' },
     ];
-
-    const closeMenu = useDebounceFn(() => {
-        if (isMenuOpen.value) isMenuOpen.value = false
-    }, 150);
-    const toggleMenu = useDebounceFn(() => isMenuOpen.value = !isMenuOpen.value, 150);
-
-    onClickOutside(menuRef, closeMenu);
 </script>
 
 <template>
-    <nav
-        class="header__nav" :class="{ 'menu_open': isMenuOpen, 'menu_close': !isMenuOpen }"
-        ref="menuRef"
+    <nav 
+        class="header__nav"
+        :class="{ 'open': menu.isOpen }"
     >
-        <ul>
+        <ul class="header__navigation-list">
+            <div v-if="isMobile">
+                <HeaderNavLi
+                    v-for="(item, index) in list"
+                    v-bind="item"
+                    :key="index"
+                />
+            </div>
+
             <HeaderNavLi
+                v-else
                 v-for="(item, index) in list"
                 v-bind="item"
                 :key="index"
             />
+
+            <ChangeThemeButton />
         </ul>
     </nav>
 
@@ -42,44 +45,64 @@
 <style lang="scss">
     .header__nav {
         display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
-        background-color: grey;
-        overflow: hidden;
-        position: relative;
 
-    @include mobile {
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 60vw;
-        max-height: 50vh;
-        padding: 8px $padding_mobile;
-        transition:
-        max-height 0.4s ease,
-        padding 0.3s ease,
-        mask-position 0.4s ease,
-        mask-image 0.4s ease;
+        transition: transform .3s ease-in;
 
-        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-        mask-position: top;
-        mask-size: 100% 200%;
-        mask-repeat: no-repeat;
+        @include mobile {
+            position: absolute;
+            right: 0;
+            top: 0;
 
-        &.menu_open {
-            max-height: 50vh;
-            mask-position: bottom;
+            height: 100vh;
+            width: 60vw;
+
+            padding: $header-height 16px;
+
+            transform: translateX(100%);
+
+            @include visual_fading-blur(3px, to right, 50%);
+
+            &.open { transform: translateX(0); }
         }
 
-        &.menu_close {
-            max-height: 0;
-            padding: 0;
-            mask-position: top;
+        @include desktop { 
+            position: relative;
+            height: 100%;
+            flex: 1;
         }
     }
 
-    @include desktop {
+    .header__navigation-list {
+        @include mobile {
+            position: relative;
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+            >div {
+                position: relative;
+                width: 100%;
+                flex: 1;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
+        @include desktop {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
-}
 </style>

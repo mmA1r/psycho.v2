@@ -5,9 +5,11 @@
 </script>
 
 <template>
-    <div>
-        {{ title }}
-    </div>
+    <li>
+        <a>
+            {{ title }}
+        </a>
+    </li>
 </template>
 
 <style lang='scss' scoped>

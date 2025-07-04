@@ -12,6 +12,7 @@ export default defineNuxtConfig({
         images: resolve(__dirname, 'assets/img'),
         types: resolve(__dirname, 'assets/types'),
         hooks: resolve(__dirname, 'composables'),
+        stores: resolve(__dirname, 'stores'),
     },
 
     vite: {

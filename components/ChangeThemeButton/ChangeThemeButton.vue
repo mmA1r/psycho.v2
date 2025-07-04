@@ -1,5 +1,5 @@
 <script setup>
-    import { useTheme } from 'hooks/useTheme';
+    import { useTheme } from '~/composables/useTheme.client';
 
     const { toggleTheme } = useTheme();
 </script>

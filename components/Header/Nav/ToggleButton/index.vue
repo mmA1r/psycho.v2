@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+    import { useMenuStore } from 'stores/menu';
+    
+    const { toggle } = useMenuStore();
 </script>
 
 <template>
     <button
         class="header__toggle-button"
+        @click="toggle"
     >
-
     </button>
 </template>
 

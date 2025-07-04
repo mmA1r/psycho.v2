@@ -16,7 +16,8 @@
     --color__accent_dark: #DAE0F1ff;
     --color__shadow_dark: #62677Aff;
 
-    --color-transition-time: #{$color-transition-time};
+    --color-transition-duration: #{$color-transition-duration};
+    --color-transition-ease: #{$color-transition-ease};
 }
 
 html {

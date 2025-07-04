@@ -1,6 +1,9 @@
 $padding_mobile: 16px;
 
-$color-transition-time: ease .3s;
+$header-height: 60px;
+
+$color-transition-duration: 0.3s;
+$color-transition-ease: ease-in-out;
 
 @mixin visual_fading-blur (
     $px,

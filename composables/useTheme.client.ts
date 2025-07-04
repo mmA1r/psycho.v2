@@ -12,7 +12,8 @@ const currentTheme = ref<Theme>(storedTheme.value ?? (systemPrefersDark.value ? 
 const applyTheme = useDebounceFn((theme: Theme) => {
     const root = document.documentElement;
     const style = getComputedStyle(root);
-    const duration = parseFloat(style.getPropertyValue('--color-transition-time')) || 0.3;
+    const duration = parseFloat(style.getPropertyValue('--color-transition-duration')) || 0.3;
+    const ease = style.getPropertyValue('--color-transition-ease').trim() || 'power1.inOut';
 
     const varsToAnimate: Record<string, string> = {};
 
@@ -25,7 +26,7 @@ const applyTheme = useDebounceFn((theme: Theme) => {
     gsap.to(root, {
         ...varsToAnimate,
         duration,
-        ease: 'power1.inOut'
+        ease
     });
 }, 150);
 
