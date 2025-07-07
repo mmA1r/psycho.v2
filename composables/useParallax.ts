@@ -1,12 +1,21 @@
-import { useWindowScroll } from '@vueuse/core'
+import { useWindowScroll, useEventListener } from '@vueuse/core';
 
-/**
- * @param speed Коэффициент параллакса (0.1–0.5)
-*/
-export function useParallax(speed = 0.3) {
+export function useParallax(layerRef: Ref<HTMLElement | null>, speed = 0.5) {
     const { y } = useWindowScroll();
-    
-    const offset = computed(() => Math.floor(y.value * speed));
+    const offset = ref(0);
+
+    const update = () => {
+        if (!layerRef.value) return;
+
+        offset.value = y.value * speed;
+        layerRef.value.style.transform = `translate3d(0, ${offset.value}px, 0)`;
+    }
+
+    onMounted(() => {
+        update();
+        useEventListener(window, 'scroll', update, { passive: true });
+        layerRef.value?.classList.add('parallax');
+    });
 
     return { offset }
 }

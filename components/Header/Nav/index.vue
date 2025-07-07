@@ -1,7 +1,7 @@
 <script setup>
     import { useBreakpoint } from 'hooks/useBreakpoints';
     import { useMenuStore } from 'stores/menu';
-    
+
     const { isMobile } = useBreakpoint();
     const menu = useMenuStore();
 
