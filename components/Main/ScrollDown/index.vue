@@ -22,8 +22,8 @@
 
         // appear
         elems.forEach((el, i) => {
-            el.style.transform = `translate3d(0,0,0)`;
-            el.style.transitionDelay = `${i * STAGGER_DELAY}ms`;
+            el.style.setProperty('--pos-y', '0');
+            el.style.setProperty('--delay', `${i * STAGGER_DELAY}ms`);
             el.classList.add('enter');
         });
 
@@ -49,10 +49,10 @@
         const elems = Array.from(container.value.children) as HTMLElement[];
 
         elems.forEach((elem) => {
-            elem.style.transform = `translate3d(0, ${height + 5}px, 0)`;
+            elem.style.setProperty('--pos-y', `${height + 5}px`);
         });
 
-        if (svg.value) svg.value.setAttribute('color', 'var(--color__accent)');
+        if (svg.value) svg.value.setAttribute('color', 'var(--color__main)');
 
         events.subscribe('heroSectionSettled', onHeroSettled);
     });
@@ -63,48 +63,52 @@
 </script>
 
 <template>
-    <div
-        v-if="visible"
-        ref="container"
-        class="main__scroll-down"
-    >
-        <div class="main__point"/> 
-        <div class="main__point"/> 
-        <div class="main__icon">
-            <svg 
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 -960 960 960"
-                ref="svg"
-            >
-                <path 
-                    fill="currentColor"
-                    d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-                />
-            </svg>
+        <div
+            v-if="visible"
+            ref="container"
+            class="main__scroll-down"
+        >
+            <div class="main__point"/> 
+            <div class="main__point"/> 
+            <div class="main__icon">
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    ref="svg"
+                >
+                    <path 
+                        fill="currentColor"
+                        d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                    />
+                </svg>
+            </div>
+            <div class="main__point"/> 
+            <div class="main__point"/> 
         </div>
-        <div class="main__point"/> 
-        <div class="main__point"/> 
-    </div>
+
+        <div class="main__scroll-down" v-else/>
 </template>
   
 <style scoped lang="scss">
     .main__scroll-down {
-        position: absolute;
+        position: relative;
+        height: $header-height;
         width: 40px;
-        height: 80px;
 
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
 
-        bottom: 12px;
-        left: 50%;
         transform: translateX(-50%);
+
+        padding: 8px 0;
 
         >* {
             position: relative;
             opacity: 0;
+
+            transform: translate3d(0, var(--pos-y), 0);
 
             transition:
                 transform $animation-duration ease-out,
@@ -112,7 +116,8 @@
             ;
 
             &.enter {
-                transform: translate3d(0, 0, 0);
+                transition-delay: var(--delay);
+                transform: translate3d(0, var(--pos-y), 0);
                 opacity: 1;
             }
 
@@ -129,7 +134,7 @@
                     transform: translate3d(0, 0, 0);
                 }
                 40% {
-                    transform: translate3d(0, -8px, 0);
+                    transform: translate3d(0, -4px, 0);
                 }
                 60% {
                     transform: translate3d(0, -5px, 0);
@@ -139,7 +144,7 @@
     }
 
     .main__icon {
-        $size: 24px;
+        $size: 18px;
 
         width: $size;
         height: $size;
@@ -163,7 +168,7 @@
 
         border-radius: 50%;
 
-        background-color: var(--color__accent);
+        background-color: var(--color__main);
     }
 </style>
   

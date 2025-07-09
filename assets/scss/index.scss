@@ -3,18 +3,30 @@
 @use 'variables' as *;
 @use 'atoms' as *;
 
-:root {
-    --color__main_light: #637D7Cff;
-    --color__light-accent_light: #9AAEA8ff;
-    --color__dark-accent_light: #132F23ff;
-    --color__accent_light: #699198ff;
-    --color__shadow_light: #325660ff;
+$murrey: #89023eff;
+$old-rose: #cc7178ff;
+$misty-rose: #ffd9daff;
+$misty-rose-2: #f3e1ddff;
+$tea-green: #c7d9b7ff;
 
-    --color__main_dark: #B3BAD1ff;
-    --color__light-accent_dark: #8C95AEff;
-    --color__dark-accent_dark: #342E2Eff;
-    --color__accent_dark: #DAE0F1ff;
-    --color__shadow_dark: #62677Aff;
+$thistle: #f0d3f7ff;
+$puce: #b98ea7ff;
+$mountbatten-pink: #a57982ff;
+$space-cadet: #302f4dff;
+$russian-violet: #120d31ff;
+
+:root {
+    --color__main_light: #f3e1ddff;
+    --color__light-accent_light: #ffd9daff;
+    --color__dark-accent_light: #cc7178ff;
+    --color__accent_light: #c7d9b7ff;
+    --color__shadow_light: #89023eff;
+
+    --color__main_dark: #302f4dff;
+    --color__light-accent_dark: #f0d3f7ff;
+    --color__dark-accent_dark: #b98ea7ff;
+    --color__accent_dark: #a57982ff;
+    --color__shadow_dark: #120d31ff;
 
     --color-transition-duration: #{$color-transition-duration};
     --color-transition-ease: #{$color-transition-ease};

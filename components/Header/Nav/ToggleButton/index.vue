@@ -24,6 +24,8 @@
         align-items: center;
         justify-content: center;
 
-        background-color: black;
+        border-radius: 50%;
+
+        background-color: var(--color__main);
     }
 </style>

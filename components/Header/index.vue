@@ -51,8 +51,7 @@
         height: 100%;
         width: 40px;
 
-
-        background-color: black;
+        background-color: var(--color__main);
     }
 </style>
   
