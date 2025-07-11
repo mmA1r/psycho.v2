@@ -45,23 +45,16 @@
     .main__content-wrapper {
         position: relative;
 
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-
         flex: 1;
+
+        display: grid;
+        grid-template-rows: 1fr auto 1fr;
+        justify-items: start;
+        align-items: center;
 
         width: 100%;
 
         padding: 0 $padding-mobile;
-
-        >* {
-            &:first-child,
-            &:last-child {
-                flex: 1;
-            }
-        }
     }
 </style>
   

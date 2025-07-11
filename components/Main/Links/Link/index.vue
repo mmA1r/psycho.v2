@@ -33,6 +33,7 @@
         &::after, &::before {
             content: '';
             display: block;
+            position: relative;
 
             width: 2px;
             height: $line-height;

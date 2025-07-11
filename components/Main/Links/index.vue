@@ -1,8 +1,6 @@
 <script lang='ts' setup>
     import { useEventStore } from 'stores/events';
-    import { useWait } from 'hooks/useWait';
 
-    const { wait } = useWait();
     const events = useEventStore();
 
     const nav = ref<HTMLElement|null>(null);
