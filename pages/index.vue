@@ -1,5 +1,5 @@
 <template>
-    <Header />
+    <Overlay />
     <Main />
     <About />
     <Footer />

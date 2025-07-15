@@ -52,8 +52,6 @@
             elem.style.setProperty('--pos-y', `${height + 5}px`);
         });
 
-        if (svg.value) svg.value.setAttribute('color', 'var(--color__main)');
-
         events.subscribe('heroSectionSettled', onHeroSettled);
     });
 
@@ -63,35 +61,33 @@
 </script>
 
 <template>
-        <div
-            v-if="visible"
-            ref="container"
-            class="main__scroll-down"
-        >
-            <div class="main__point"/> 
-            <div class="main__point"/> 
-            <div class="main__icon">
-                <svg 
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 -960 960 960"
-                    ref="svg"
-                >
-                    <path 
-                        fill="currentColor"
-                        d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
-                    />
-                </svg>
-            </div>
-            <div class="main__point"/> 
-            <div class="main__point"/> 
+    <div
+        v-if="visible"
+        ref="container"
+        class="scroll-down"
+    >
+        <div class="scroll-down__point"/> 
+        <div class="scroll-down__point"/> 
+        <div class="scroll-down__icon">
+            <svg 
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                ref="svg"
+            >
+                <path 
+                    fill="currentColor"
+                    d="m480-360 160-160H320l160 160Zm0 280q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                />
+            </svg>
         </div>
-
-        <div class="main__scroll-down" v-else/>
+        <div class="scroll-down__point"/> 
+        <div class="scroll-down__point"/> 
+    </div>
 </template>
   
 <style scoped lang="scss">
-    .main__scroll-down {
-        position: relative;
+    .scroll-down {
+        position: fixed;
         height: $header-height;
         width: 40px;
 
@@ -100,9 +96,14 @@
         justify-content: space-around;
         align-items: center;
 
+        bottom: 0;
+        left: 50%;
         transform: translateX(-50%);
+        z-index: 50;
 
         padding: 8px 0;
+
+        color: var(--color__primary);
 
         >* {
             position: relative;
@@ -143,7 +144,7 @@
         }
     }
 
-    .main__icon {
+    .scroll-down__icon {
         $size: 18px;
 
         width: $size;
@@ -156,11 +157,12 @@
         >svg {
             position: relative;
             width: 100%;
-            height: 100%;   
+            height: 100%;
+            color: currentColor;
         }
     }
 
-    .main__point {
+    .scroll-down__point {
         $size: 4px;
 
         width: $size;
@@ -168,7 +170,7 @@
 
         border-radius: 50%;
 
-        background-color: var(--color__main);
+        background-color: currentColor;
     }
 </style>
   

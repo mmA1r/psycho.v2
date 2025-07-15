@@ -19,11 +19,11 @@ export default defineNuxtPlugin(() => {
         style: [{
             textContent: `
                 :root {
-                    --color__main: var(--color__main_${initialTheme});
-                    --color__accent: var(--color__accent_${initialTheme});
-                    --color__light-accent: var(--color__light-accent_${initialTheme});
-                    --color__dark-accent: var(--color__dark-accent_${initialTheme});
-                    --color__shadow: var(--color__shadow_${initialTheme});
+                    --color__primary: var(--color__primary_${initialTheme});
+                    --color__background: var(--color__background_${initialTheme});
+
+                    --color__primary-rgb: var(--color__primary_${initialTheme}-rgb);
+                    --color__background-rgb: var(--color__background_${initialTheme}-rgb);
                 }
             `
         }]

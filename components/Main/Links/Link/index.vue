@@ -40,7 +40,7 @@
 
             transition: clip-path $animation-duration ease;
 
-            background-color: var(--color__main);
+            background-color: var(--color__primary);
         }
 
         &:first-child {

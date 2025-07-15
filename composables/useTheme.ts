@@ -6,11 +6,8 @@ export type Theme = 'light' | 'dark';
 
 const COOKIE_KEY = 'theme';
 const VARS = [
-    'color__main',
-    'color__accent',
-    'color__light-accent',
-    'color__dark-accent',
-    'color__shadow'
+    'color__primary',
+    'color__background',
 ];
 
 export const useTheme = () => {
@@ -29,8 +26,12 @@ export const useTheme = () => {
     
         for (const key of VARS) {
             const baseVar  = `--${key}`;
+            const baseRgbVar  = `--${key}-rgb`;
             const themeVar = `--${key}_${newTheme}`;
+            const themeRgbVar = `--${key}_${newTheme}-rgb`;
+            
             targets[baseVar] = style.getPropertyValue(themeVar).trim();
+            targets[baseRgbVar] = style.getPropertyValue(themeRgbVar).trim();
         }
     
         gsap.to(root, {

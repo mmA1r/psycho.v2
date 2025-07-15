@@ -26,6 +26,6 @@
 
         border-radius: 50%;
 
-        background-color: var(--color__main);
+        background-color: var(--color__text);
     }
 </style>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-    import { MainScrollDown } from '#components';
     import { useParallax } from 'hooks/useParallax';
 
     const main = ref<HTMLElement|null>(null);
@@ -14,18 +13,13 @@
         class="section main"
         ref="main"
     >
-        <div class="empty" aria-hidden="true" />
-
         <div 
             class="main__content-wrapper"
             ref="container"
         >
             <MainLinks />
             <MainHero />
-            <div aria-hidden="true"/>
         </div>
-
-        <MainScrollDown />
     </section>
 </template>
   
@@ -35,7 +29,29 @@
         justify-content: center;
         align-items: center;
 
-        .empty {
+        background-image: url('../../assets/img/moss.jpg');
+        background-position: center;
+        background-size: cover;
+
+        &::after {
+            content: '';
+            display: block;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            pointer-events: none;
+
+            background: rgba(var(--color__background-rgb), .1);
+        }
+
+        &::before {
+            content: '';
+            display: block;
             position: relative;
             height: $header-height;
             width: 100%;
@@ -55,6 +71,12 @@
         width: 100%;
 
         padding: 0 $padding-mobile;
+
+        &::after {
+            content: '';
+            display: block;
+            position: relative;
+        }
     }
 </style>
   

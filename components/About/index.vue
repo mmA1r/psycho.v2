@@ -1,29 +1,38 @@
+<script lang='ts' setup>
+
+</script>
+
 <template>
-    <section class="section">
+    <section
+        class="about section"
+    >
 
     </section>
 </template>
-  
-  <style scoped>
-    .about-section {
-        position: relative;
-        width: 100%;
-        padding: 16px;
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+<style lang='scss' scoped>
+    .about {
+        background-color: var(--color__background);
 
-        background-color: #0C1E28;
-        color: white;
-    }
+        &::after {
+            $height: 15vh;
 
-    .subsection {
-        position: relative;
-        width: 100%;
-        min-height: 50vh;
-        height: auto;
+            content: '';
+            display: block;
+            position: absolute;
+
+            top: -$height;
+            left: 0;
+
+            width: 100%;
+            height: $height;
+
+            background: linear-gradient(
+                to top,
+                rgba(var(--color__background-rgb)) 5%,
+                rgba(var(--color__background-rgb), .5),
+                transparent
+            );
+        }
     }
 </style>
-  

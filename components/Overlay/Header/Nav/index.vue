@@ -18,6 +18,8 @@
         :class="{ 'open': menu.isOpen }"
     >
         <ul class="header__navigation-list">
+            <ChangeThemeButton />
+
             <div v-if="isMobile">
                 <HeaderNavLi
                     v-for="(item, index) in list"
@@ -33,7 +35,6 @@
                 :key="index"
             />
 
-            <ChangeThemeButton />
         </ul>
     </nav>
 
@@ -60,7 +61,9 @@
 
             transform: translateX(100%);
 
-            @include visual_fading-blur(3px, to right, 50%);
+            background: linear-gradient(to right, transparent, rgba(var(--color__background-rgb), 0.5) 100%);
+
+            @include visual_fading-blur(3px, to right, 30%);
 
             &.open { transform: translateX(0); }
         }
@@ -79,8 +82,10 @@
 
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-end;
             justify-content: space-between;
+
+            padding-top: 12px;
 
             >div {
                 position: relative;
@@ -89,7 +94,7 @@
 
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: center;
             }
         }

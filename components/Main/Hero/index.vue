@@ -61,7 +61,7 @@ $offset: 10px;
     justify-content: center;
 
     font-family: $font-main;
-    color: var(--color__main);
+    color: var(--color__primary);
 
     &__author,
     &__title {
