@@ -1,34 +1,43 @@
-<script setup>
+<script lang="ts" setup>
+    import { onClickOutside } from '@vueuse/core'
     import { useBreakpoint } from 'hooks/useBreakpoints';
     import { useMenuStore } from 'stores/menu';
 
+    const nav = ref<HTMLElement|null>(null);
     const { isMobile } = useBreakpoint();
     const menu = useMenuStore();
 
+    onClickOutside(nav, () => {
+        if (menu.isOpen) {
+            menu.toggle();
+        }
+    });
+
     const list = [
-        { title: 'Обо мне' },
-        { title: 'Консультация' },
-        { title: 'Контакты' },
+        { title: 'Обо мне', path: 'about' },
+        { title: 'Консультация', path: 'consulting' },
+        { title: 'Контакты', path: 'contacts' },
     ];
 </script>
 
 <template>
     <nav 
+        ref="nav"
         class="header__nav"
         :class="{ 'open': menu.isOpen }"
     >
         <ul class="header__navigation-list">
-            <ChangeThemeButton />
+            <OverlayHeaderChangeThemeButton />
 
             <div v-if="isMobile">
-                <HeaderNavLi
+                <OverlayHeaderNavLi
                     v-for="(item, index) in list"
                     v-bind="item"
                     :key="index"
                 />
             </div>
 
-            <HeaderNavLi
+            <OverlayHeaderNavLi
                 v-else
                 v-for="(item, index) in list"
                 v-bind="item"
@@ -37,9 +46,6 @@
 
         </ul>
     </nav>
-
-    <HeaderNavToggleButton v-if="isMobile"/>
-    <ChangeThemeButton v-else/>
 </template>
 
 

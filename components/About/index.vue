@@ -27,6 +27,8 @@
             width: 100%;
             height: $height;
 
+            pointer-events: none;
+
             background: linear-gradient(
                 to top,
                 rgba(var(--color__background-rgb)) 5%,

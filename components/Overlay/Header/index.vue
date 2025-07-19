@@ -9,17 +9,17 @@
             class="header__logo"
             to="/"
         >
+            <IconsAnimatedLotus />
         </NuxtLink>
         
+        <OverlayHeaderNav/>
 
-        <!--<OverlayHeaderNav/>-->
         <button 
             class="header__burger-wrapper"
             @click="toggle"
         >
-            <BurgerIcon />
+            <IconsBurgerIcon />
         </button>
-        <!--<ChangeThemeButton />-->
     </header>
 </template>
   
@@ -57,7 +57,7 @@
         width: 40px;
         height: 40px;
 
-        padding: 4px;
+        padding: 8px;
 
         color: var(--color__primary);
     }
@@ -67,8 +67,6 @@
 
         height: 40px;
         width: 40px;
-
-        background-color: var(--color__primary);
     }
 </style>
   

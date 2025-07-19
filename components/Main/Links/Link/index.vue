@@ -1,11 +1,21 @@
 <script lang='ts' setup>
-
+    defineProps({
+        href: { type: String, required: true },
+        component: { type: [Object, Function], required: true },
+    });
 </script>
 
 <template>
     <div class="main__link-wrapper">
-        <a class="main__link">
-            
+        <a 
+            class="main__link"
+            target="_blank"
+            rel="noopener noreferrer"
+            :href="href"
+        >
+            <div class="main__link-svg-wrapper">
+                <component :is="component"/>
+            </div>
         </a>
     </div>
 </template>
@@ -35,7 +45,7 @@
             display: block;
             position: relative;
 
-            width: 2px;
+            width: 1px;
             height: $line-height;
 
             transition: clip-path $animation-duration ease;
@@ -78,5 +88,51 @@
         height: 30px;
 
         border-radius: 50%;
+    }
+
+
+    .main__link-svg-wrapper {
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+
+        padding: 4px;
+
+        color: var(--color__primary);
+
+        border-radius: 50%;
+        border: 1px solid currentColor;
+
+        overflow: hidden;
+
+        >svg { z-index: 1; position: relative; }
+
+        &::after {
+            content: '';
+            display: block;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-color: var(--color__primary);
+
+            clip-path: circle(0% at 50% 50%);
+            z-index: 0;
+        }
+
+        &:hover {
+            transition: color var(--animation-duration) ease;
+            color: var(--color__background);
+
+            &::after {
+                transition: clip-path var(--animation-duration) ease;
+                clip-path: circle(50% at 50% 50%);
+            }
+        }
     }
 </style>

@@ -1,8 +1,8 @@
 <script lang='ts' setup>
     import { useEventStore } from 'stores/events';
+    import { IconsInstagram, IconsTelegram, IconsYoutube } from '#components';
 
     const events = useEventStore();
-
     const nav = ref<HTMLElement|null>(null);
 
     const onHeroSettled = async () => {
@@ -22,6 +22,22 @@
     onUnmounted(() => {
         events.unsubscribe('heroSectionSettled', onHeroSettled);
     });
+
+    const links = [
+        {
+            href: '/',
+            component: IconsInstagram
+        },
+        {
+            href: '/',
+            component: IconsTelegram
+        },
+        {
+            href: '/',
+            component: IconsYoutube
+        },
+
+    ]
 </script>
 
 <template>
@@ -29,8 +45,11 @@
         class="main__nav"
         ref="nav"
     >
-        <MainLinksLink />
-        <MainLinksLink />
+        <MainLinksLink v-for="(item, index) in links"
+            :key="index"
+            :component="item.component"
+            :href="item.href"
+        />
     </nav>
 </template>
 

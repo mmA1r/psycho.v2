@@ -17,8 +17,8 @@
             class="main__content-wrapper"
             ref="container"
         >
-            <MainLinks />
             <MainHero />
+            <MainLinks />
         </div>
     </section>
 </template>
@@ -46,7 +46,7 @@
 
             pointer-events: none;
 
-            background: rgba(var(--color__background-rgb), .1);
+            background: rgba(var(--color__background-rgb), .4);
         }
 
         &::before {
@@ -62,15 +62,15 @@
         position: relative;
 
         flex: 1;
+        z-index: 1;
 
-        display: grid;
-        grid-template-rows: 1fr auto 1fr;
-        justify-items: start;
-        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
 
         width: 100%;
-
-        padding: 0 $padding-mobile;
+        padding: 24px $padding-mobile;
 
         &::after {
             content: '';

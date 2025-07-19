@@ -41,5 +41,5 @@ export const useTheme = () => {
         });
     }, 300);
 
-    return { theme: themeCookie.value,  toggleTheme }
+    return { theme: themeCookie,  toggleTheme }
 }

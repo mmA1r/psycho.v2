@@ -1,13 +1,23 @@
 <script lang='ts' setup>
+    import { useMenuStore } from 'stores/menu';
+
+    const menu = useMenuStore();
+
     defineProps<{
         title: string
+        path: string
     }>();
 </script>
 
 <template>
     <li class="header__link-wrapper">
-        <div class=""></div>
-        <a class="header__link">
+        <div>
+            <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 11L6 4L10.5 7.5L6 11Z" fill="currentColor"></path></svg>
+        </div>
+        <a
+            class="header__link"
+            @click="menu.toggle"
+        >
             {{ title }}
         </a>
     </li>
@@ -38,16 +48,17 @@
             background: rgba(var(--color__primary-rgb), .5);
         }
 
-        &:active {
-            color: var(--color__accent);
-        }
-
         >div {
             position: relative;
 
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+            margin-top: 1px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;            
         }
     }
 
@@ -57,6 +68,8 @@
 
         text-decoration: none;
         text-align: left;
+
+
 
         flex: 1;
     }
