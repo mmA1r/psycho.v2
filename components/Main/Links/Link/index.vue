@@ -11,6 +11,7 @@
             class="main__link"
             target="_blank"
             rel="noopener noreferrer"
+            tabindex="0"
             :href="href"
         >
             <div class="main__link-svg-wrapper">
@@ -88,8 +89,9 @@
         height: 30px;
 
         border-radius: 50%;
-    }
 
+        @include focus-visible;
+    }
 
     .main__link-svg-wrapper {
         position: relative;
@@ -119,18 +121,15 @@
             width: 100%;
             height: 100%;
 
-            background-color: var(--color__primary);
+            background-color: var(--color__background);
+            transition: clip-path var(--color-transition-duration);
 
             clip-path: circle(0% at 50% 50%);
             z-index: 0;
         }
 
         &:hover {
-            transition: color var(--animation-duration) ease;
-            color: var(--color__background);
-
             &::after {
-                transition: clip-path var(--animation-duration) ease;
                 clip-path: circle(50% at 50% 50%);
             }
         }

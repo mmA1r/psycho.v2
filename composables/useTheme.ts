@@ -12,7 +12,7 @@ const VARS = [
 
 export const useTheme = () => {
     const themeCookie = useCookie<Theme>(COOKIE_KEY);
-  
+
     const toggleTheme = useDebounceFn(() => {
         const newTheme: Theme = themeCookie.value === 'dark' ? 'light' : 'dark';
         themeCookie.value = newTheme;

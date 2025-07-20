@@ -13,7 +13,7 @@
 
         wait(300);
 
-        isAnimating.value = false
+        isAnimating.value = false;
     }
 </script>
 
@@ -49,7 +49,7 @@
 
 <style lang="scss">
     .change-theme-button {
-        $size: 40px;
+        $size: 44px;
 
         position: relative;
 
@@ -68,7 +68,7 @@
         border: 1px solid currentColor;
         overflow: hidden;
 
-        transition: color var(--color-transition-duration);
+        transition: color var(--color-transition-duration) ease-out;
         
         &::after {
             display: block;
@@ -93,6 +93,8 @@
                 clip-path: circle(50% at 50% 50%);
             }
         }
+
+        @include focus-visible;
     }
     
     .icon {

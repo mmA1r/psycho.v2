@@ -35,3 +35,10 @@ $animation-duration: 0.5s;
         mask-image: linear-gradient($side, transparent, black $length);
     }
 }
+
+@mixin focus-visible {
+    &:focus-visible {
+        border: 2px solid #3B8F5E;
+        border-radius: 1rem;
+    }
+}

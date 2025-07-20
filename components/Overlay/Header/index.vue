@@ -1,6 +1,8 @@
 <script setup>
-    import { useMenuStore } from 'stores/menu';
+    import { useBreakpoint, useMenuStore } from '#imports';
+
     const { toggle } = useMenuStore();
+    const { isMobile } = useBreakpoint();
 </script>
 
 <template>
@@ -11,62 +13,80 @@
         >
             <IconsAnimatedLotus />
         </NuxtLink>
-        
-        <OverlayHeaderNav/>
 
-        <button 
-            class="header__burger-wrapper"
-            @click="toggle"
-        >
-            <IconsBurgerIcon />
-        </button>
+        <template v-if="isMobile">
+            <button
+                class="header__burger-wrapper"
+                tabindex="0"
+                @click="toggle"
+            >
+                <IconsBurgerIcon />
+            </button>
+
+            <OverlayHeaderNav />
+        </template>
+
+        <template v-else>
+            <OverlayHeaderNav />
+            <OverlayHeaderChangeThemeButton />
+        </template>
     </header>
 </template>
   
 <style lang="scss" scoped>
     .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 100vw;
+        height: $header-height;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @include visual_fading-blur(2px, to top, 80%);
+
+        z-index: 50;
+
+        background: linear-gradient(
+            to bottom,
+            rgba(var(--color__background-rgb), .4),
+            transparent
+        );
+
         @include mobile {
-            position: fixed;
-            top: 0;
-            left: 0;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
             padding: 8px $padding_mobile;
+        }
 
-            width: 100vw;
-            height: 60px;
-
-            z-index: 50;
-
-            @include visual_fading-blur(2px, to top, 80%);
-
-            background: linear-gradient(
-                to bottom,
-                rgba(var(--color__background-rgb), .4),
-                transparent
-            );
+        @include desktop {
+            padding: 8px 24px;
         }
     }
 
     .header__burger-wrapper {
         position: relative;
 
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
 
         padding: 8px;
 
+        z-index: 1;
+
         color: var(--color__primary);
+
+        @include focus-visible;
     }
 
     .header__logo {
         position: relative;
 
-        height: 40px;
-        width: 40px;
+        height: 44px;
+        width: 44px;
+
+        @include focus-visible;
     }
 </style>
   

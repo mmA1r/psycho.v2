@@ -1,7 +1,7 @@
 <script setup lang="ts">
-    const bottomColor = '#232230';
-    const middleColor = '#858986';
-    const topColor = '#D2D8D4';
+    const bottomColor = '#3b8f5e';
+    const middleColor = '#54c17d';
+    const topColor = '#6fec9f';
 
     const visible = ref(true); // TODO При скрытии Header останавливать анимацию
 </script>

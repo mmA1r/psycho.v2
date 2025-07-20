@@ -8,7 +8,7 @@
     const menu = useMenuStore();
 
     onClickOutside(nav, () => {
-        if (menu.isOpen) {
+        if (menu.isOpen && isMobile.value) {
             menu.toggle();
         }
     });
@@ -27,23 +27,25 @@
         :class="{ 'open': menu.isOpen }"
     >
         <ul class="header__navigation-list">
-            <OverlayHeaderChangeThemeButton />
+            <OverlayHeaderChangeThemeButton v-if="isMobile" />
 
-            <div v-if="isMobile">
+            <template v-if="isMobile">
+                <div>
+                    <OverlayHeaderNavLi
+                        v-for="(item, index) in list"
+                        v-bind="item"
+                        :key="index"
+                    />
+                </div>
+            </template>
+
+            <template v-else>
                 <OverlayHeaderNavLi
                     v-for="(item, index) in list"
                     v-bind="item"
                     :key="index"
                 />
-            </div>
-
-            <OverlayHeaderNavLi
-                v-else
-                v-for="(item, index) in list"
-                v-bind="item"
-                :key="index"
-            />
-
+            </template>
         </ul>
     </nav>
 </template>
