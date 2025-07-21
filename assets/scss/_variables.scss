@@ -42,3 +42,20 @@ $animation-duration: 0.5s;
         border-radius: 1rem;
     }
 }
+
+@mixin bg-image($path) {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    background-image: url('#{$path}@2x.jpg'); // fallback
+
+    background-image: image-set(
+        url('#{$path}@1x.avif') type('image/avif') 1x,
+        url('#{$path}@1x.webp') type('image/webp') 1x,
+        url('#{$path}@1x.jpg') type('image/jpg') 1x,
+        url('#{$path}@2x.avif') type('image/avif') 2x,
+        url('#{$path}@2x.webp') type('image/webp') 2x,
+        url('#{$path}@2x.jpg') type('image/jpg') 2x,
+    );
+}

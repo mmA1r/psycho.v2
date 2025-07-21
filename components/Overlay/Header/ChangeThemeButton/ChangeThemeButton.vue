@@ -49,7 +49,7 @@
 
 <style lang="scss">
     .change-theme-button {
-        $size: 44px;
+        $size: 40px;
 
         position: relative;
 

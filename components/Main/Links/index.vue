@@ -25,15 +25,15 @@
 
     const links = [
         {
-            href: '/',
+            href: 'https://www.instagram.com/es8matveeva?igsh=MW9vNjBic3RjNGsyaQ==',
             component: IconsInstagram
         },
         {
-            href: '/',
+            href: 'https://t.me/aubeexistentielle',
             component: IconsTelegram
         },
         {
-            href: '/',
+            href: 'www.youtube.com/@ekaterina8matveeva',
             component: IconsYoutube
         },
 

@@ -6,7 +6,10 @@ export default defineNuxtConfig({
     
     css: ['~/assets/scss/index.scss'],
 
-    modules: ['@vueuse/nuxt', '@pinia/nuxt'],
+    modules: [
+        '@vueuse/nuxt',
+        '@pinia/nuxt',
+    ],
 
     alias: {
         images: resolve(__dirname, 'assets/img'),

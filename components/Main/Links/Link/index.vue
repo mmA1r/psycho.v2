@@ -85,8 +85,8 @@
 
     .main__link {
         position: relative;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
 
         border-radius: 50%;
 
@@ -99,7 +99,7 @@
         width: 100%;
         height: 100%;
 
-        padding: 4px;
+        padding: 6px;
 
         color: var(--color__primary);
 
@@ -110,28 +110,16 @@
 
         >svg { z-index: 1; position: relative; }
 
-        &::after {
-            content: '';
-            display: block;
-
-            position: absolute;
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 100%;
-
-            background-color: var(--color__background);
-            transition: clip-path var(--color-transition-duration);
-
-            clip-path: circle(0% at 50% 50%);
-            z-index: 0;
-        }
+        background-color: transparent;
 
         &:hover {
-            &::after {
-                clip-path: circle(50% at 50% 50%);
-            }
+            background-color: var(--color__primary);
+            color: var(--color__background);
+        }
+
+        &:active {
+            color: var(--color__primary);
+            background-color: rgba(var(--color__primary-rgb), .5);
         }
     }
 </style>

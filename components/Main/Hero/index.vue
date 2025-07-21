@@ -1,97 +1,144 @@
 <script lang='ts' setup>
     import { useEventStore } from 'stores/events';
-
-    const author = ref<HTMLHeadingElement|null>(null);
-    const text = ref<HTMLParagraphElement|null>(null);
+    import { useBreakpoint } from '#imports';
 
     const events = useEventStore();
+    const { isMobile } = useBreakpoint();
+
+    const hero = ref<HTMLDivElement|null>(null);
 
     onMounted(() => {
-        const authorDelay = 0;
-        const textDelay = .2;
+        let delay = 0;
 
-        if (author.value && text.value) {
-            author.value.style.setProperty('--delay', `${authorDelay}s`);
-            text.value.style.setProperty('--delay', `${textDelay}s`);
-
-            author.value.classList.add('enter');
-            text.value.classList.add('enter');
-
-            const heroSectionSettledTime = 
-                authorDelay +
-                textDelay +
-                parseFloat(getComputedStyle(text.value).transitionDuration)
-            ;
+        setTimeout(() => {
+            if (hero.value) {
+                (Array.from(hero.value.children) as HTMLElement[])
+                    .forEach(child => {
+                        child.style.setProperty('--delay', `${delay}s`);
+                        child.classList.add('enter');
+                        delay += .2;
+                    })
+                ;
+            }
 
             setTimeout(() => {
                 events.call('heroSectionSettled', true);
-            }, parseInt((heroSectionSettledTime * 1000).toFixed(0)));
-        }
+            }, parseInt((delay * 1000).toFixed(0)));
+        }, delay);
     });
 </script>
 
 <template>
-    <div class="text-hero">
-        <h1
-            class="text-hero__author"
-            ref="author"
-        >
+    <div 
+        class="text-hero"
+        ref="hero"
+    >
+        <h1 class="text-hero__author">
             Екатерина Матвеева
         </h1>
-        <p
-            class="text-hero__title"
-            ref="text"
-        >
+        <p class="text-hero__title">
             Исследуй себя и этот мир вместе со мной
         </p>
+        <button 
+            class="hero__button"
+            v-if="!isMobile"
+        >
+            Записаться
+        </button>
     </div>
 </template>
 
 <style lang='scss' scoped>
-$animation-delay-author_hero: 0.3s;
-$offset: 10px;
+    $animation-delay-author_hero: 0.3s;
+    $offset: 10px;
 
-.text-hero {
-    position: relative;
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    font-family: $font-main;
-    color: var(--color__primary);
-
-    &__author,
-    &__title {
+    .text-hero {
         position: relative;
-        opacity: 0;
-        transform: translateY(10px);
 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        font-family: $font-main;
+        color: var(--color__primary);
         text-align: center;
-        transition: 
-            transform $animation-duration,
-            opacity $animation-duration
-        ;
 
-        &.enter {
-            transition-delay: var(--delay);
+        >* {
+            position: relative;
+            opacity: 0;
+            transform: translateY(10px);
 
-            transform: translate(0);
-            opacity: 1;
+            transition: 
+                transform $animation-duration,
+                opacity $animation-duration
+            ;
+
+            &.enter {
+                transition-delay: var(--delay);
+
+                transform: translate(0);
+                opacity: 1;
+            }
+        }
+
+        &__author {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        &__title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: .5rem;
+        }
+
+        @include mobile {
+            width: 100%;
+            align-items: center;
+        }
+
+        @include desktop {
+            align-items: flex-start;
+            padding-left: 10vw;
+
+            &__author,
+            &__title {
+                text-align: left;
+            }
+
+            &__author {
+                font-size: 3rem;
+            }
+
+            &__title {
+                font-size: 2rem;
+            }
         }
     }
 
-    &__author {
-        font-size: 2rem;
-        font-weight: 500;
-    }
+    .hero__button {
+        position: relative;
 
-    &__title {
+        color:  var(--color__primary);
+        
+        padding: 8px 18px;
+        margin: 12px 0;
+        border: 1px solid currentColor;
+        border-radius: 1.5rem;
+
         font-size: 1.5rem;
-        font-weight: 400;
-        margin-top: .5rem;
+        background-color: transparent;
+
+        @include focus-visible;
+
+        &:hover {
+            background-color: var(--color__primary);
+            color: var(--color__background);
+        }
+
+        &:active {
+            color: var(--color__primary);
+            background-color: rgba(var(--color__primary-rgb), .5);
+        }
     }
-}
 </style>

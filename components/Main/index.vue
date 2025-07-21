@@ -29,10 +29,6 @@
         justify-content: center;
         align-items: center;
 
-        background-image: url('../../assets/img/moss.jpg');
-        background-position: center;
-        background-size: cover;
-
         &::after {
             content: '';
             display: block;
@@ -56,26 +52,42 @@
             height: $header-height;
             width: 100%;
         }
+
+        @include mobile {
+            @include bg-image('/assets/img/main/main_mobile');
+        }
+
+        @include desktop {
+            @include bg-image('/assets/img/main/main_desktop');
+            background-size: contain;
+        }
     }
 
     .main__content-wrapper {
         position: relative;
 
-        flex: 1;
         z-index: 1;
 
+        flex: 1;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
 
         width: 100%;
-        padding: 24px $padding-mobile;
+        padding: 24px;
 
-        &::after {
-            content: '';
-            display: block;
-            position: relative;
+        @include mobile {
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            &::after {
+                content: '';
+                display: block;
+                position: relative;
+            }
+        }
+
+        @include desktop {
+            justify-content: space-between;
         }
     }
 </style>
