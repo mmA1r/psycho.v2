@@ -10,21 +10,19 @@
     onMounted(() => {
         let delay = 0;
 
-        setTimeout(() => {
-            if (hero.value) {
-                (Array.from(hero.value.children) as HTMLElement[])
-                    .forEach(child => {
-                        child.style.setProperty('--delay', `${delay}s`);
-                        child.classList.add('enter');
-                        delay += .2;
-                    })
-                ;
-            }
+        if (hero.value) {
+            (Array.from(hero.value.children) as HTMLElement[])
+                .forEach(child => {
+                    child.style.setProperty('--delay', `${delay}s`);
+                    child.classList.add('enter');
+                    delay += .2;
+                })
+            ;
+        }
 
-            setTimeout(() => {
-                events.call('heroSectionSettled', true);
-            }, parseInt((delay * 1000).toFixed(0)));
-        }, delay);
+        setTimeout(() => {
+            events.call('heroSectionSettled', true);
+        }, parseInt((delay * 1000).toFixed(0)));
     });
 </script>
 
@@ -99,7 +97,7 @@
 
         @include desktop {
             align-items: flex-start;
-            padding-left: 10vw;
+            //padding-left: 10vw;
 
             &__author,
             &__title {

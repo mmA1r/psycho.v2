@@ -9,14 +9,8 @@
 </script>
 
 <template>
-    <section 
-        class="section main"
-        ref="main"
-    >
-        <div 
-            class="main__content-wrapper"
-            ref="container"
-        >
+    <section class="section main" ref="main">
+        <div class="main__inner ctx" ref="container">
             <MainHero />
             <MainLinks />
         </div>
@@ -26,8 +20,8 @@
   
 <style scoped lang="scss">
     .main {
-        justify-content: center;
-        align-items: center;
+        display: flex;
+        flex-direction: column;
 
         &::after {
             content: '';
@@ -63,20 +57,14 @@
         }
     }
 
-    .main__content-wrapper {
-        position: relative;
-
+    .main__inner {
+        flex-grow: 1;
         z-index: 1;
 
-        flex: 1;
-        display: flex;
-
-        width: 100%;
-        padding: 24px;
+        justify-content: space-between;
 
         @include mobile {
             flex-direction: column;
-            justify-content: space-between;
             align-items: flex-start;
 
             &::after {
@@ -84,10 +72,6 @@
                 display: block;
                 position: relative;
             }
-        }
-
-        @include desktop {
-            justify-content: space-between;
         }
     }
 </style>

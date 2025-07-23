@@ -1,11 +1,13 @@
-import { useBreakpoints } from '@vueuse/core'
+import { useBreakpoints, useSSRWidth } from '@vueuse/core';
 
 export function useBreakpoint() {
+    const width = useSSRWidth();
+
     const breakpoints = useBreakpoints({
         mobile: 0,
         tablet: 768,
         desktop: 1024,
-    }, { ssrWidth: 766 });
+    }, { ssrWidth: width });
 
     return {
         isMobile:   breakpoints.between('mobile', 'tablet'),
