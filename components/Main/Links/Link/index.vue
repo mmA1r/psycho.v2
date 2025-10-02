@@ -14,9 +14,9 @@
             tabindex="0"
             :href="href"
         >
-            <div class="main__link-svg-wrapper">
+            <UiButton>
                 <component :is="component"/>
-            </div>
+            </UiButton>
         </a>
     </div>
 </template>
@@ -37,8 +37,8 @@
         transform: translateY(10px);
 
         transition: 
-            opacity $animation-duration ease,
-            transform $animation-duration ease
+            opacity $easing,
+            transform $easing
         ;
 
         &::after, &::before {
@@ -49,7 +49,7 @@
             width: 1px;
             height: $line-height;
 
-            transition: clip-path $animation-duration ease;
+            transition: clip-path $easing;
 
             background-color: var(--color__primary);
         }
@@ -73,53 +73,13 @@
             transform: translateY(0);
 
             &::after {
-                transition-delay: $animation-duration;
+                transition-delay: $anim-duration;
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             }
             &::before {
-                transition-delay: $animation-duration;
+                transition-delay: $anim-duration;
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             }
-        }
-    }
-
-    .main__link {
-        position: relative;
-        width: 40px;
-        height: 40px;
-
-        border-radius: 50%;
-
-        @include focus-visible;
-    }
-
-    .main__link-svg-wrapper {
-        position: relative;
-
-        width: 100%;
-        height: 100%;
-
-        padding: 6px;
-
-        color: var(--color__primary);
-
-        border-radius: 50%;
-        border: 1px solid currentColor;
-
-        overflow: hidden;
-
-        >svg { z-index: 1; position: relative; }
-
-        background-color: transparent;
-
-        &:hover {
-            background-color: var(--color__primary);
-            color: var(--color__background);
-        }
-
-        &:active {
-            color: var(--color__primary);
-            background-color: rgba(var(--color__primary-rgb), .5);
         }
     }
 </style>

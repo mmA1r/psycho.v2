@@ -12,15 +12,28 @@
 *,
 *::before,
 *::after {
+    position: relative;
     box-sizing: border-box;
     touch-action: manipulation;
 }
 
+*::before,
+*::after {
+    content: '';
+    display: block;
+}
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
 html {
     height: 100%;
     -webkit-touch-callout: none;
     user-select: none;
     scroll-behavior: smooth;
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
 }
 
 body {
@@ -45,10 +58,14 @@ pre {
 }
 
 a, 
-button, 
+button,
+[type='button'],
+[type='reset'],
+[type='submit'],
 [role="button"] {
     cursor: pointer;
     user-select: none;
+    -webkit-appearance: button;
 }
 
 input,

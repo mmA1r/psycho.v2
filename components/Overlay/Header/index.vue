@@ -1,33 +1,55 @@
-<script setup>
-    import { useBreakpoint, useMenuStore } from '#imports';
+<script setup lang="ts">
+import { useWindowScroll, useThrottleFn } from '@vueuse/core';
 
-    const { toggle } = useMenuStore();
-    const { isMobile } = useBreakpoint();
+const headerRef = ref<HTMLElement | null>(null);
+const isHiding = ref(false);
+const isHiddenFinally = ref(false);
+
+let lastPos = 0;
+const THRESHOLD = 10;
+const SHOW_AFTER_PX = 60;
+
+const { y } = useWindowScroll();
+
+const toggleOnScroll = useThrottleFn(async (curY: number) => {
+    const delta = curY - lastPos;
+    if (Math.abs(delta) < THRESHOLD) {
+        lastPos = curY;
+        return;
+    }
+
+    if (delta > 0 && curY > SHOW_AFTER_PX) {
+        isHiding.value = true;
+        await waitTransitionEnd(headerRef.value, 'transform');
+        isHiddenFinally.value = true;
+    } else {
+        isHiddenFinally.value = false;
+        await nextTick();
+        requestAnimationFrame(() => { isHiding.value = false });
+    }
+
+    lastPos = curY <= 0 ? 0 : curY;
+}, 100)
+
+onMounted(() => {
+    lastPos = y.value;
+    watch(y, (v) => toggleOnScroll(v));
+})
 </script>
 
 <template>
-    <header class="header">
+    <header
+        ref="headerRef"
+        :class="[
+            'header',
+            { 
+                hide: isHiding,
+                hidden: isHiddenFinally
+            }
+        ]"
+    >
         <div class="header__inner ctx">
-            <NuxtLink class="header__logo" to="/">
-                <IconsAnimatedLotus />
-            </NuxtLink>
-
-            <template v-if="isMobile">
-                <button
-                    class="header__burger-wrapper"
-                    tabindex="0"
-                    @click="toggle"
-                >
-                    <IconsBurgerIcon />
-                </button>
-
-                <OverlayHeaderNav />
-            </template>
-
-            <template v-else>
-                <OverlayHeaderNav />
-                <OverlayHeaderChangeThemeButton />
-            </template>
+            <slot />
         </div>
     </header>
 </template>
@@ -39,45 +61,28 @@
         left: 0;
 
         width: 100vw;
-        height: $header-height;
+        height: 60px;
 
         z-index: 50;
 
-        background: linear-gradient(
-            to bottom,
-            rgba(var(--color__background-rgb), .4),
-            transparent
-        );
+        background-color: rgba(var(--color__background-rgb), .15);
+        border-bottom: 1px solid var(--color__primary);
 
-        @include visual_fading-blur(2px, to top, 80%);
+        transform: translateY(0);
 
-        >.header__inner {
-            justify-content: space-between;
+        transition: transform $anim;
+        will-change: transform;
+
+        @include glass(2px);
+
+        &.hide {
+            transform: translateY(-110%);
+            pointer-events: none;
         }
-    }
 
-    .header__burger-wrapper {
-        position: relative;
-
-        width: 44px;
-        height: 44px;
-
-        padding: 8px;
-
-        z-index: 1;
-
-        color: var(--color__primary);
-
-        @include focus-visible;
-    }
-
-    .header__logo {
-        position: relative;
-
-        height: 44px;
-        width: 44px;
-
-        @include focus-visible;
+        &.hidden {
+            @include glassOff();
+        }
     }
 </style>
   

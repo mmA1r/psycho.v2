@@ -67,8 +67,8 @@
             transform: translateY(10px);
 
             transition: 
-                transform $animation-duration,
-                opacity $animation-duration
+                transform $anim-duration,
+                opacity $anim-duration
             ;
 
             &.enter {

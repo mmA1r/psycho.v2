@@ -21,7 +21,7 @@
         v-if="mounted"
         attributeName="d"
         :values="appearValues"
-        :dur="useCssVar('--animation-duration').value"
+        :dur="useCssVar('--anim-duration').value"
         begin="0.1s"
         fill="freeze"
         keyTimes="0;.5;1"

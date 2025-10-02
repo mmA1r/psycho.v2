@@ -106,7 +106,7 @@
         z-index: 1;
 
         animation-timing-function: var(--color-transition-ease);
-        animation-duration: var(--color-transition-duration);
+        anim-duration: var(--color-transition-duration);
         animation-fill-mode: forwards;
     }
 

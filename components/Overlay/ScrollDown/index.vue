@@ -14,7 +14,7 @@
         const BOUNCE_DELAY = 1000;
         const FADE_DELAY = 2500;
         const ANIM_DURATION = parseFloat(getComputedStyle(document.documentElement)
-            .getPropertyValue('--animation-duration')) * 1000
+            .getPropertyValue('--anim-duration')) * 1000
         ;
 
         if (!container.value) return;
@@ -112,8 +112,8 @@
             transform: translate3d(0, var(--pos-y), 0);
 
             transition:
-                transform $animation-duration ease-out,
-                opacity $animation-duration ease-out;
+                transform $anim-duration ease-out,
+                opacity $anim-duration ease-out;
             ;
 
             &.enter {
@@ -123,7 +123,7 @@
             }
 
             &.bounce {
-                animation: bounce $animation-duration ease-out 1s;
+                animation: bounce $anim-duration ease-out 1s;
             }
 
             &.fade {

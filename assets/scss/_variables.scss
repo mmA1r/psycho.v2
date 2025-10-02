@@ -10,37 +10,47 @@ $padding_mobile: 16px;
 
 $header-height: 60px;
 
-$color-transition-duration: .6s;
-$color-transition-ease: ease-in-out;
-$animation-duration: 0.5s;
+$anim-duration: .6s;
+$anim: $anim-duration ease;
 
-@mixin visual_fading-blur (
-    $px,
-    $side,
-    $length
-) {
-    &::before {
-        content: "";
-        
-        position: absolute;
-        left: 0;
-        top: 0;
-        pointer-events: none;
-        z-index: 0;
-
-        width: 100%;
-        height: 100%;
-
-        backdrop-filter: blur($px);
-        mask-image: linear-gradient($side, transparent, black $length);
-    }
-}
+$ease-duration: .3s;
+$easing: $ease-duration ease;
 
 @mixin focus-visible {
     &:focus-visible {
-        border: 2px solid #3B8F5E;
-        border-radius: 1rem;
+        @content;
     }
+}
+
+@mixin hover {
+    @media (any-hover: hover) and (pointer: fine) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+@mixin rd-motion {
+    @media (prefers-reduced-motion: reduce) {
+        @content;
+    }
+}
+
+@mixin glass($px: 5px) {
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur($px);
+    }
+}
+
+@mixin glassOff() {
+    &::after { backdrop-filter: none; }
 }
 
 @mixin bg-image($path) {

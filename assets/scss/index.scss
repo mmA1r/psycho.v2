@@ -19,10 +19,10 @@
     --color__accent-rgb: 167, 142, 221;
 
     // time
-    --color-transition-duration: #{$color-transition-duration};
-    --color-transition-ease: #{$color-transition-ease};
+    --color-transition-duration: #{$anim-duration};
+    --color-transition-ease: ease;
     
-    --animation-duration: #{$animation-duration};
+    --anim-duration: #{$anim-duration};
 }
 
 html {
