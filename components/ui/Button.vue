@@ -42,6 +42,8 @@ defineProps<{
         >* { z-index: 2 }
 
         &::after, &::before {
+            content: '';
+            display: block;
             position: absolute;
             top: 0;
             left: 0;

@@ -1,6 +1,5 @@
 <script lang='ts' setup>
     import { useEventStore } from 'stores/events';
-    import { useBreakpoint } from '#imports';
 
     const events = useEventStore();
     const { isMobile } = useBreakpoint();

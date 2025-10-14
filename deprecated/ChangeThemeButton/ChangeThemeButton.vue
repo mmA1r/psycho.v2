@@ -71,8 +71,8 @@
         transition: color var(--color-transition-duration) ease-out;
         
         &::after {
-            display: block;
             content: '';
+            display: block;
             position: absolute;
             top: 0;
             left: 0;

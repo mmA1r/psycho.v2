@@ -1,4 +1,3 @@
-// ~/stores/event.ts
 import { defineStore } from 'pinia';
 import mitt, { type Emitter, type Handler } from 'mitt';
 

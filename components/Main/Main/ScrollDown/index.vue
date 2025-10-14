@@ -83,11 +83,12 @@
         <div class="scroll-down__point"/> 
         <div class="scroll-down__point"/> 
     </div>
+    <div v-else class="scroll-down"></div>
 </template>
   
 <style scoped lang="scss">
     .scroll-down {
-        position: fixed;
+        position: relative;
         height: $header-height;
         width: 40px;
 
@@ -96,14 +97,18 @@
         justify-content: space-around;
         align-items: center;
 
+        z-index: 50;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 50;
 
         padding: 8px 0;
 
         color: var(--color__primary);
+
+        @include desktop {
+            position: fixed;
+        }
 
         >* {
             position: relative;

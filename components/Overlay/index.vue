@@ -1,4 +1,0 @@
-<template>
-    <OverlayHeader />
-    <OverlayScrollDown/>
-</template>

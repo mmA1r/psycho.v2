@@ -9,18 +9,10 @@
     display: none !important;
 }
 
-*,
-*::before,
-*::after {
+* {
     position: relative;
     box-sizing: border-box;
     touch-action: manipulation;
-}
-
-*::before,
-*::after {
-    content: '';
-    display: block;
 }
 
 /**

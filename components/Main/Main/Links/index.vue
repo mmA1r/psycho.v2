@@ -45,7 +45,7 @@
         class="main__nav"
         ref="nav"
     >
-        <MainLinksLink v-for="(item, index) in links"
+        <MainMainLinksLink v-for="(item, index) in links"
             :key="index"
             :component="item.component"
             :href="item.href"
