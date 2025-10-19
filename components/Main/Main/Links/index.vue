@@ -1,8 +1,8 @@
 <script lang='ts' setup>
     import { useEventStore } from 'stores/events';
-    import { IconsInstagram, IconsTelegram, IconsYoutube } from '#components';
 
     const events = useEventStore();
+    const { links } = useSocialLinks();
     const nav = ref<HTMLElement|null>(null);
 
     const onHeroSettled = async () => {
@@ -23,21 +23,6 @@
         events.unsubscribe('heroSectionSettled', onHeroSettled);
     });
 
-    const links = [
-        {
-            href: 'https://www.instagram.com/es8matveeva?igsh=MW9vNjBic3RjNGsyaQ==',
-            component: IconsInstagram
-        },
-        {
-            href: 'https://t.me/aubeexistentielle',
-            component: IconsTelegram
-        },
-        {
-            href: 'www.youtube.com/@ekaterina8matveeva',
-            component: IconsYoutube
-        },
-
-    ]
 </script>
 
 <template>

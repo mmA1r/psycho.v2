@@ -1,12 +1,12 @@
 <script lang='ts' setup>
-defineProps<{
-
-}>()
+    defineProps<{
+        isReverse?:boolean;
+    }>();
 </script>
 
 <template>
     <button
-        class="button"
+        :class="['button', { reverse: isReverse }]"
         ontouchstart=""
     >
         <slot />
@@ -56,7 +56,6 @@ defineProps<{
         &::after {
             transition: clip-path $easing;
             clip-path: circle(0% at 50% 50%);
-            background-color: var(--color__primary);
             z-index: 0 !important;
         }
 
@@ -81,6 +80,20 @@ defineProps<{
 
         @include focus-visible {
             box-shadow: 0 0 0 2px rgba(0,0,0, .5);
+        }
+
+        &.reverse {
+            color: var(--color__background);
+            &::after {
+                background-color: var(--color__background);
+            }
+            &::before {
+                background-color: var(--color__primary);
+            }
+
+            @include hover {
+                color: var(--color__primary);
+            }
         }
     }
 </style>

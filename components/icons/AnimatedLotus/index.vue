@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink to="/">
+    <NuxtLink to="/" class="lotus-logo">
         <svg
             fill="none"
             viewBox="0 0 180 180"
@@ -89,4 +89,3 @@
         </svg>
     </NuxtLink>
 </template>
-  
