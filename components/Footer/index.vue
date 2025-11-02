@@ -5,9 +5,6 @@
     <footer class="footer">
         <div class="footer__inner ctx">
             <FooterMain />
-            <FooterColumn heading="Контакты">
-                <FooterContacts />
-            </FooterColumn>
             <FooterColumn heading="Политика">
                 <FooterUserRelated />
             </FooterColumn>
@@ -20,15 +17,19 @@
         background-color: var(--color__primary);
         padding: 60px 0;
 
+        @include mobile {
+            padding: 30px 0;
+            &__inner { flex-direction: column; }
+        }
+
         &__inner {
             width: 100%;
             height: auto;
 
             display: flex;
-            align-items: center;
             align-items: stretch;
             justify-content: center;
-            gap: 8px;
+            gap: 20px;
 
             >* { 
                 display: flex;

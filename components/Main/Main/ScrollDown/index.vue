@@ -97,7 +97,7 @@
         justify-content: space-around;
         align-items: center;
 
-        z-index: 50;
+        z-index: 10;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);

@@ -1,16 +1,14 @@
 <script lang='ts' setup>
+    const route = useRoute();
+
     const list = [
         {
             title: 'Обо мне',
-            href: '/#about'
+            href: '#about'
         },
         {
-            title: 'Обо мне',
-            href: '/#about'
-        },
-        {
-            title: 'Обо мне',
-            href: '/#about'
+            title: 'Консультация',
+            href: '#consulting'
         },
     ]
 </script>
@@ -18,7 +16,9 @@
 <template>
     <ul class="nav-menu__list">
         <li class="nav-menu__item" v-for="(item, index) in list" :key="index">
-            <span>{{ item.title }}</span>
+            <NuxtLink :to="{ path: route.path, hash: item.href }">
+                <span>{{ item.title }}</span>
+            </NuxtLink>
         </li>
     </ul>
 </template>

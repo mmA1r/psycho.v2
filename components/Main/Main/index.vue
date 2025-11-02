@@ -24,6 +24,7 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        z-index: 1;
 
         &::after {
             content: '';
@@ -55,7 +56,7 @@
         display: flex;
         justify-content: space-between;
         flex-grow: 1;
-        z-index: 1;
+        z-index: 2;
 
         padding: 70px 24px 0 24px;
 

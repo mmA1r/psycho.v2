@@ -1,3 +1,4 @@
 <template>
     <MainMain />
+    <MainAbout />
 </template>
