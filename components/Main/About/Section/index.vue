@@ -6,10 +6,7 @@ defineProps<{
 }>();
 
 const headingRef = ref<HTMLElement | null>(null);
-const contentBlockRef = ref<HTMLElement | null>(null);
-
 const isHeadingSettled = ref(false);
-const isContentVisible = ref(false);
 
 onMounted(() => {
     if (headingRef.value) {
@@ -25,21 +22,6 @@ onMounted(() => {
             { threshold: 0.8 }
         );
         headingObserver.observe(headingRef.value);
-    }
-
-    if (contentBlockRef.value) {
-        const contentObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        isContentVisible.value = true;
-                        contentObserver.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-        contentObserver.observe(contentBlockRef.value);
     }
 });
 </script>

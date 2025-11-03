@@ -1,10 +1,11 @@
 <script lang='ts' setup>
-    import { IconsEducation, IconsPerson, MainAboutEducation } from '#components';
+    import { IconsEducation, IconsPerson, MainAboutEducation, MainAboutPersonal } from '#components';
 
     const info = [
         {
             iconComponent: IconsPerson,
             title: 'Обо мне',
+            content: MainAboutPersonal
         },
         {
             iconComponent: IconsEducation,
@@ -47,36 +48,4 @@
             gap: 36px;
         }
     }
-
-    .education-block__list {
-    display: grid;
-    grid-template-columns: 1fr; // Или 2 колонки на десктопе
-    gap: 20px;
-    list-style: none;
-    padding: 0;
-}
-
-.education-block__item {
-    padding: 15px 20px;
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    background-color: var(--color-card-background);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.education-block__year {
-    // Вынесение года вправо (Flexbox)
-    order: -1; 
-    align-self: flex-start;
-    padding: 2px 8px;
-    border-radius: 4px;
-    background-color: var(--color-accent);
-    color: white;
-    font-weight: 700;
-}
-
-.education-block__item {
-    display: flex;
-    flex-direction: column;
-}
 </style>

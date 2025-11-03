@@ -56,6 +56,7 @@ watch(() => modal.isOpen, (isOpen) => {
         align-items: center;
 
         background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
         z-index: 1000;
         outline: none;
 
