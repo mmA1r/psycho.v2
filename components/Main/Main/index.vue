@@ -42,6 +42,29 @@
             background: rgba(var(--color__background-rgb), .4);
         }
 
+        &::before {
+            $height: 15vh;
+
+            content: '';
+            display: block;
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: $height;
+
+            pointer-events: none;
+
+            background: linear-gradient(
+                to top,
+                rgba(var(--color__background-rgb)) 5%,
+                rgba(var(--color__background-rgb), .5),
+                transparent
+            );
+        }
+
         @include mobile {
             @include bg-image('/assets/img/main/main_mobile');
         }

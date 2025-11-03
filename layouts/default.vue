@@ -4,6 +4,7 @@
         <slot />
     </main>
     <Footer />
+    <FunctionalModal />
 </template>
 
 <style lang='scss' scoped>

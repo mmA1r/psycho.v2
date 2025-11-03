@@ -2,45 +2,31 @@
 defineProps<{
     iconComponent: Component;
     title: string;
-    content: string;
     reverse?: boolean;
 }>();
 
-// 1. Ref для заголовка (для анимации clip-path)
 const headingRef = ref<HTMLElement | null>(null);
-// 2. Ref для блока контента (для анимации текста)
 const contentBlockRef = ref<HTMLElement | null>(null);
 
-// Классы-флаги для управления CSS-анимацией
 const isHeadingSettled = ref(false);
 const isContentVisible = ref(false);
 
 onMounted(() => {
-    // -------------------------------------------------------------------
-    // 1. Наблюдатель для заголовка (about-info__heading)
-    // -------------------------------------------------------------------
     if (headingRef.value) {
         const headingObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         isHeadingSettled.value = true;
-                        // Можно отключить наблюдение, когда анимация сработала один раз
                         headingObserver.unobserve(entry.target);
                     }
                 });
             },
-            {
-                // Порог: 0.8 значит, что 80% заголовка должно быть видно
-                threshold: 0.8, 
-            }
+            { threshold: 0.8 }
         );
         headingObserver.observe(headingRef.value);
     }
 
-    // -------------------------------------------------------------------
-    // 2. Наблюдатель для блока контента (about-info__block)
-    // -------------------------------------------------------------------
     if (contentBlockRef.value) {
         const contentObserver = new IntersectionObserver(
             (entries) => {
@@ -51,10 +37,7 @@ onMounted(() => {
                     }
                 });
             },
-            {
-                // Порог: 0.1 значит, что как только 10% блока видно, запускаем
-                threshold: 0.1, 
-            }
+            { threshold: 0.1 }
         );
         contentObserver.observe(contentBlockRef.value);
     }
@@ -83,12 +66,7 @@ onMounted(() => {
                 />
             </template>
         </header>
-        <div
-            class="about-info__block"
-            :class="{ 'content-settled': isContentVisible }"
-            ref="contentBlockRef"
-            v-html="content"
-        />
+        <slot />
     </section>
 </template>
 
@@ -141,42 +119,6 @@ onMounted(() => {
             height: 100%;
             aspect-ratio: 1;
             color: currentColor;
-        }
-
-        &__block {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 0 $padding;
-
-            &::after {
-                $mask-height: 120%;
-                $gradient-height: 15%;
-
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: $mask-height;
-
-                transform: translateY(0); 
-                
-                transition-delay: $ease-duration;
-                transition: transform $anim;
-                
-                background: linear-gradient(
-                    to top,
-                    var(--color__background) 85%,
-                    rgba(var(--color__background-rgb), 0) 100%
-                );
-                pointer-events: none;
-                z-index: 1;
-            }
-
-            &.content-settled {
-                &::after { transform: translateY(120%); }
-            }
         }
     }
 </style>

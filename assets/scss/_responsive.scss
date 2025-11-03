@@ -11,3 +11,12 @@ $bp-desktop: 768px;
         @content;
     }
 }
+
+@mixin adaptive-font($minFontSize, $maxFontSize) {
+    font-size: $maxFontSize;
+    
+    @include mobile {
+        font-size: $minFontSize;
+    }
+}
+

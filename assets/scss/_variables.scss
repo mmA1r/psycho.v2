@@ -16,6 +16,8 @@ $anim: $anim-duration ease;
 $ease-duration: .3s;
 $easing: $ease-duration ease;
 
+$brd-radius: 20px;
+
 @mixin focus-visible {
     &:focus-visible {
         @content;
@@ -36,7 +38,7 @@ $easing: $ease-duration ease;
     }
 }
 
-@mixin glass($px: 5px) {
+@mixin glass($px: 5px, $brd-rad: 0px) {
     &::after {
         content: '';
         display: block;
@@ -47,6 +49,7 @@ $easing: $ease-duration ease;
         z-index: 0;
         width: 100%;
         height: 100%;
+        border-radius: $brd-rad;
         backdrop-filter: blur($px);
     }
 }

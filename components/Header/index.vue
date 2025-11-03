@@ -35,16 +35,19 @@
 
         z-index: 50;
 
+        border-radius: $brd-radius;
         background-color: rgba(var(--color__background-rgb), .15);
-        border-bottom: 1px solid var(--color__primary);
 
-        @include glass(2px);
+        @include glass(2px, $brd-radius);
 
         &__inner {
             z-index: 1;
             justify-content: flex-start;
             padding-top: 5px;
             padding-bottom: 5px;
+
+            border-radius: inherit;
+            border-bottom: 1px solid var(--color__primary);
 
             >* {
                 height: 100%;

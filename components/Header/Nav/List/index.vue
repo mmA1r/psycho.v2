@@ -1,7 +1,12 @@
 <script lang='ts' setup>
     const route = useRoute();
 
-    const list = [
+    type NavItem = {
+        title: string;
+        href: string;
+    }
+
+    const list: Array<NavItem> = [
         {
             title: 'Обо мне',
             href: '#about'
@@ -10,7 +15,7 @@
             title: 'Консультация',
             href: '#consulting'
         },
-    ]
+    ];
 </script>
 
 <template>

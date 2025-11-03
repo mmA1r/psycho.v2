@@ -78,6 +78,9 @@
         align-items: center;
         justify-content: flex-start;
 
+        border-bottom-right-radius: $brd-radius;
+        border-top-right-radius: $brd-radius;
+
         color: var(--color__background);
 
         @include mobile {

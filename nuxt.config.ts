@@ -3,17 +3,14 @@ import { resolve } from 'path'
 export default defineNuxtConfig({
     compatibilityDate: '2025-05-15',
     devtools: { enabled: false },
-    
+
     css: ['~/assets/scss/index.scss'],
 
-    modules: [
-        '@vueuse/nuxt',
-        '@pinia/nuxt',
-    ],
+    modules: ['@vueuse/nuxt', '@pinia/nuxt', '@nuxt/image'],
 
     alias: {
         images: resolve(__dirname, 'assets/img'),
-        types: resolve(__dirname, 'assets/types'),
+        types: resolve(__dirname, 'types'),
         hooks: resolve(__dirname, 'composables'),
         stores: resolve(__dirname, 'stores'),
     },
