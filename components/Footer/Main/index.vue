@@ -5,7 +5,7 @@
 <template>
     <div class="footer__main">
         <div class="footer__logo">
-            <IconsAnimatedLotus />
+            <!--<IconsAnimatedLotus />-->
             <span>Екатерина Матвеева</span>
         </div>
         <nav class="footer__links">

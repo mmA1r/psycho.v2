@@ -119,7 +119,7 @@ watch(() => modal.isOpen, (isOpen) => {
 /* Анимация */
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-    transition: opacity $easing;
+    transition: opacity $anim;
 }
 
 .modal-fade-enter-from,

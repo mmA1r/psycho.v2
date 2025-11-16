@@ -1,29 +1,12 @@
 <script lang='ts' setup>
     const contentBlockRef = ref<HTMLElement | null>(null);
-    const isContentVisible = ref(false);
-
-    onMounted(() => {
-        if (contentBlockRef.value) {
-            const contentObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            isContentVisible.value = true;
-                            contentObserver.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-            contentObserver.observe(contentBlockRef.value);
-        }
-    });
+    const { isIntersecting } = useIntersectionObserver(contentBlockRef);
 </script>
 
 <template>
     <section 
         ref="contentBlockRef"
-        :class="['about-info__personal', { settled: isContentVisible }]"
+        :class="['about-info__personal', { settled: isIntersecting }]"
     >
         <p class="personal-info__paragraph">Моя жизнь – это путь от ощущения одиночества и необходимости быть «успешной ради любви» к глубокому пониманию себя и проживанию жизни в согласии с тем, что для меня действительно важно. Я всегда тонко чувствовала мир и людей вокруг, улавливала скрытую глубину за внешними событиями и остро переживала любую несправедливость.</p>
         <p class="personal-info__paragraph">Более 10 лет я профессионально занималась спортивно-бальными танцами, которые научили меня трудолюбию и настойчивости, но также показали цену зависимости самоценности от чужих оценок. Периоды кризиса стали точкой трансформации: я обратилась внутрь и начала исследовать свои чувства, мысли, ограничения и желания. Этот путь самоисследования привел меня к профессии психолога.</p>

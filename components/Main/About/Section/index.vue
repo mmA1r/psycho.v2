@@ -6,24 +6,7 @@ defineProps<{
 }>();
 
 const headingRef = ref<HTMLElement | null>(null);
-const isHeadingSettled = ref(false);
-
-onMounted(() => {
-    if (headingRef.value) {
-        const headingObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        isHeadingSettled.value = true;
-                        headingObserver.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.8 }
-        );
-        headingObserver.observe(headingRef.value);
-    }
-});
+const { isIntersecting: isHeadingSettled } = useIntersectionObserver(headingRef, { threshold: .8 });
 </script>
 
 <template>

@@ -2,7 +2,7 @@
     import { type EducationSectionProps } from 'types/education';
 
     const contentBlockRef = ref<HTMLElement | null>(null);
-    const isContentVisible = ref(false);
+    const { isIntersecting } = useIntersectionObserver(contentBlockRef);
 
     const info: Array<EducationSectionProps> = [
         {
@@ -50,29 +50,12 @@
             info: []
         },
     ];
-
-    onMounted(() => {
-        if (contentBlockRef.value) {
-            const contentObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            isContentVisible.value = true;
-                            contentObserver.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-            contentObserver.observe(contentBlockRef.value);
-        }
-    });
 </script>
 
 <template>
     <dl
         ref="contentBlockRef"
-        :class="['education-block', { settled: isContentVisible }]"
+        :class="['education-block', { settled: isIntersecting }]"
     >
         <MainAboutEducationItem
             v-for="(item, index) in info" :key="index"
