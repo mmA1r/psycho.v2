@@ -16,15 +16,37 @@
             href: '#consulting'
         },
     ];
+
+    const specialList: Array<NavItem> = [
+        {
+            title: 'Политика конфидециальности',
+            href: '/privacy'
+        },
+        {
+            title: 'Главная',
+            href: '/'
+        },
+    ]
+
+    const isSpecialHeader = computed(() => route.path !== '/');
 </script>
 
 <template>
     <ul class="nav-menu__list">
-        <li class="nav-menu__item" v-for="(item, index) in list" :key="index">
-            <NuxtLink :to="{ path: route.path, hash: item.href }">
-                <span>{{ item.title }}</span>
-            </NuxtLink>
-        </li>
+        <template v-if="isSpecialHeader">
+            <li class="nav-menu__item" v-for="(item, index) in specialList" :key="index">
+                <NuxtLink :to="item.href">
+                    <span>{{ item.title }}</span>
+                </NuxtLink>
+            </li>
+        </template>
+        <template v-else>
+            <li class="nav-menu__item" v-for="(item, index) in list" :key="index">
+                <NuxtLink :to="{ path: route.path, hash: item.href }">
+                    <span>{{ item.title }}</span>
+                </NuxtLink>
+            </li>
+        </template>
     </ul>
 </template>
 

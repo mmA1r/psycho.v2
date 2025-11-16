@@ -1,4 +1,8 @@
 <script lang='ts' setup>
+    const route = useRoute();
+
+    const isSpecialHeader = computed(() => route.path !== '/');
+    
     const { isMobile } = useBreakpoint();
     const { toggle } = useMenuStore();
 </script>
@@ -6,18 +10,36 @@
 <template>
     <header class="header">
         <div class="header__inner ctx">
-            <template v-if="isMobile">
-                <button
-                    class="header__button"
-                    @click="toggle"
-                >
-                    <IconsBurger />
-                </button>
-                <IconsAnimatedLotus class="header__logo"/>
+            <template v-if="isSpecialHeader">
+                <template v-if="!isMobile">
+                    <IconsAnimatedLotus class="header__logo"/>
+                    <HeaderSideContextLinks />
+                </template>
+                <template v-else>
+                    <button
+                        class="header__button"
+                        @click="toggle"
+                    >
+                        <IconsBurger />
+                    </button>
+                    <IconsAnimatedLotus class="header__logo"/>
+                </template>
             </template>
+
             <template v-else>
-                <IconsAnimatedLotus class="header__logo"/>
-                <HeaderNav />
+                <template v-if="isMobile">
+                    <button
+                        class="header__button"
+                        @click="toggle"
+                    >
+                        <IconsBurger />
+                    </button>
+                    <IconsAnimatedLotus class="header__logo"/>
+                </template>
+                <template v-else>
+                    <IconsAnimatedLotus class="header__logo"/>
+                    <HeaderNav />
+                </template>
             </template>
         </div>
         <HeaderNav v-if="isMobile"/>

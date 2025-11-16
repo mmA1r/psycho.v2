@@ -72,15 +72,15 @@ watch(() => modal.isOpen, (isOpen) => {
             justify-content: flex-start;
             gap: 12px;
 
-            width: 95%;
-            height: 95%;
+            max-width: 95%;
+            max-height: 95%;
             background-color: var(--color__background);
         }
 
         &__close-button {
             position: relative;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background-color: var(--color__primary);
             border-radius: 16px;
             padding: 8px;
@@ -96,6 +96,9 @@ watch(() => modal.isOpen, (isOpen) => {
         &__content {
             position: relative;
             width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+
             display: flex;
             align-items: center;
             justify-content: center;
@@ -103,27 +106,27 @@ watch(() => modal.isOpen, (isOpen) => {
         }
     }
 
-.modal-close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--color__primary);
-    padding: 0;
-    line-height: 1;
-}
+    .modal-close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--color__primary);
+        padding: 0;
+        line-height: 1;
+    }
 
-/* Анимация */
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-    transition: opacity $anim;
-}
+    /* Анимация */
+    .modal-fade-enter-active,
+    .modal-fade-leave-active {
+        transition: opacity $anim;
+    }
 
-.modal-fade-enter-from,
-.modal-fade-leave-to {
-    opacity: 0;
-}
+    .modal-fade-enter-from,
+    .modal-fade-leave-to {
+        opacity: 0;
+    }
 </style>

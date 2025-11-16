@@ -71,7 +71,7 @@
             align-items: center;
 
             width: 100%;
-            height: 100px;
+            height: 90px;
 
             padding: 16px;
             border-radius: $brd-radius;
@@ -89,6 +89,11 @@
 
         @include mobile {
             grid-template-columns: 1fr;
+
+            >li { 
+                height: 80px;
+                font-size: 14px;
+            }
         }
     }
 </style>
