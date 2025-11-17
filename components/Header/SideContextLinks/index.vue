@@ -37,6 +37,26 @@
             color: var(--color__primary);
             transition: color $easing;
 
+            @include desktop {
+                &::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    height: 1px;
+                    background-color: currentColor;
+                    clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+                    transition: clip-path $easing;
+                }
+
+                @include hover {
+                    &::after {
+                        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+                    }
+                }
+            }
+
             &.active {
                 color: var(--color__accent);
             }

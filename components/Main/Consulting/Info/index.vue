@@ -1,9 +1,13 @@
 <script lang='ts' setup>
-
+    const infoRef = ref<HTMLElement | null>(null);
+    const { isIntersecting } = useIntersectionObserver(infoRef, { threshold: .5 });
 </script>
 
 <template>
-    <section class="consulting__info">
+    <section 
+        ref="infoRef"
+        :class="['consulting__info', { settled: isIntersecting }]"
+    >
         <div class="consulting-info__text-block">
             <h3>О Методе</h3>
             <div class="consulting-info__paragraphs">
@@ -38,8 +42,14 @@
         max-width: 990px;
         border-radius: $brd-radius;
 
-        >div {
+        &.settled {
+            >div { opacity: 1; }
+        }
+
+        >div { 
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: opacity $anim;
+            opacity: 0;
         }
 
         @include mobile {

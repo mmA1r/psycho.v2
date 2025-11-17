@@ -2,6 +2,7 @@
     import { useEventStore } from 'stores/events';
 
     const events = useEventStore();
+    const route = useRoute();
     const { isMobile } = useBreakpoint();
 
     const hero = ref<HTMLDivElement|null>(null);
@@ -13,7 +14,7 @@
             (Array.from(hero.value.children) as HTMLElement[])
                 .forEach(child => {
                     child.style.setProperty('--delay', `${delay}s`);
-                    child.classList.add('enter');
+                    child.classList.add('settled');
                     delay += .2;
                 })
             ;
@@ -36,12 +37,7 @@
         <p class="text-hero__title">
             Исследуй себя и этот мир вместе со мной
         </p>
-        <button 
-            class="hero__button"
-            v-if="!isMobile"
-        >
-            Записаться
-        </button>
+        <FunctionalAppointmentLink />
     </div>
 </template>
 
@@ -70,7 +66,7 @@
                 opacity $anim-duration
             ;
 
-            &.enter {
+            &.settled {
                 transition-delay: var(--delay);
 
                 transform: translate(0);
@@ -110,32 +106,6 @@
             &__title {
                 font-size: 2rem;
             }
-        }
-    }
-
-    .hero__button {
-        position: relative;
-
-        color:  var(--color__primary);
-        
-        padding: 8px 18px;
-        margin: 12px 0;
-        border: 1px solid currentColor;
-        border-radius: 1.5rem;
-
-        font-size: 1.5rem;
-        background-color: transparent;
-
-        @include focus-visible;
-
-        &:hover {
-            background-color: var(--color__primary);
-            color: var(--color__background);
-        }
-
-        &:active {
-            color: var(--color__primary);
-            background-color: rgba(var(--color__primary-rgb), .5);
         }
     }
 </style>

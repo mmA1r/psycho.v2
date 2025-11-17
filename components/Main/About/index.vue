@@ -44,7 +44,7 @@
         padding: 80px 36px;
         
         @include mobile {
-            padding: 44px 16px;
+            padding: 58px 16px;
             gap: 36px;
         }
     }

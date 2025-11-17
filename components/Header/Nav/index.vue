@@ -61,7 +61,7 @@
         transition: background-color $easing;
         
         .opened & {
-            background-color: rgba(var(--color__primary-rgb), .8);
+            background-color: rgba(0,0,0, .7);
             @include glass();
         }
     }

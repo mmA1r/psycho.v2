@@ -24,10 +24,10 @@
         &__inner {
             flex-direction: column;
             gap: 44px;
-            padding: 36px;
+            padding: 80px 36px;
 
             @include mobile {
-                padding: 36px 16px;
+                padding: 58px 16px;
                 gap: 24px;
             }
         }

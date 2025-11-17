@@ -42,8 +42,8 @@
             transform: translateX(-50%);
             opacity: 0;
             transition:
-                opacity $anim,
-                transform $anim
+                opacity $easing,
+                transform $easing
             ;
         }
 

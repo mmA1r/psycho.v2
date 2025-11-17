@@ -5,10 +5,13 @@
     <footer class="footer">
         <div class="footer__inner ctx">
             <FooterMain />
-            <FooterColumn heading="Политика">
+            <FooterColumn heading="Условия">
                 <FooterUserRelated />
             </FooterColumn>
         </div>
+        <span class="footer__rights">
+            © 2025 Екатерина Матвеева.
+        </span>
     </footer>
 </template>
 
@@ -16,6 +19,11 @@
     .footer {
         background-color: var(--color__primary);
         padding: 60px 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 44px;
 
         @include mobile {
             padding: 30px 0;
@@ -38,6 +46,23 @@
                 justify-content: center;
                 gap: 12px;
             }
+
+            &::after {
+                position: absolute;
+                bottom: -24px;
+                left: 50%;
+                transform: translateX(-50%);
+                content: '';
+                display: block;
+                width: 80%;
+                height: 1px;
+                background-color: rgba(var(--color__background-rgb), .4);
+            }
+        }
+
+        &__rights {
+            font-size: 12px;
+            color: rgba(var(--color__background-rgb), .4);
         }
     }
 </style>

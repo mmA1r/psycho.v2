@@ -2,6 +2,9 @@
     import type { AppointmentItem } from 'types/appointment';
     import { IconsClock, IconsMap, IconsPercent, IconsWallet } from '#components';
 
+    const contentBlockRef = ref<HTMLElement | null>(null);
+    const { isIntersecting } = useIntersectionObserver(contentBlockRef, { threshold: .4 });
+
     const items: Array<AppointmentItem> = [
         {
             title: 'Место проведения',
@@ -37,24 +40,21 @@
 </script>
 
 <template>
-    <section class="consulting__appointment">
-        <h3>Запись</h3>
+    <section
+        id="appointment"
+        ref="contentBlockRef"
+        class="consulting__appointment"
+        :class="{ settled: isIntersecting }"
+    >
+        <h3 class="consulting-appointment__heading">Запись</h3>
         <ul>
             <MainConsultingAppointmentItem
                 v-for="(item, index) in items" :key="index"
+                :style="{ '--item-index': index }"
                 v-bind="item"
             />
         </ul>
-        <NuxtLink
-            class="consulting-appointment__link"
-            target="_blank"
-            rel="noopener noreferrer"
-            tabindex="0"
-            :href="''"
-        >
-            <IconsTelegram />
-            <span>Записаться</span>
-        </NuxtLink>
+        <FunctionalAppointmentLink />
     </section>
 </template>
 
@@ -66,12 +66,29 @@
         gap: 36px;
         max-width: 990px;
 
+        &.settled {
+            & li {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
         >ul {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
             justify-items: flex-start;
             column-gap: 12px;
+
+            >li {
+                transform: translateX(-50%);
+                opacity: 0;
+                transition:
+                    opacity $anim,
+                    transform $anim
+                ;
+                transition-delay: calc(var(--item-index) * $ease-duration / 2);
+            }
 
             @include mobile {
                 display: flex;
@@ -81,22 +98,10 @@
         }
     }
 
-    .consulting-appointment__link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 16px;
-        border-radius: 666px;
-        margin-top: 12px;
-        
-        font-size: 20px;
-        gap: 12px;
+    .consulting-appointment__heading {
+        opacity: 0;
 
-        border: 1px solid var(--color__primary);
-
-        >svg {
-            width: 24px;
-            height: 24px;
-        }
+        transition: opacity $anim;
+        .settled & { opacity: 1; }
     }
 </style>

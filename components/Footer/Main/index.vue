@@ -5,7 +5,7 @@
 <template>
     <div class="footer__main">
         <div class="footer__logo">
-            <!--<IconsAnimatedLotus />-->
+            <IconsAnimatedLotus />
             <span>Екатерина Матвеева</span>
         </div>
         <nav class="footer__links">
@@ -25,9 +25,6 @@
                 </li>
             </ul>
         </nav>
-        <span class="footer__rights">
-            © 2025 Екатерина Матвеева.
-        </span>
     </div>
 </template>
 
@@ -61,11 +58,6 @@
                 justify-content: flex-start;
                 gap: 12px;
             }
-        }
-
-        &__rights {
-            font-size: 12px;
-            color: rgba(var(--color__background-rgb), .4);
         }
     }
 </style>
