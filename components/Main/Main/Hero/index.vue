@@ -37,7 +37,7 @@
         <p class="text-hero__title">
             Исследуй себя и этот мир вместе со мной
         </p>
-        <FunctionalAppointmentLink />
+        <FunctionalAppointmentLink v-if="!isMobile"/>
     </div>
 </template>
 
