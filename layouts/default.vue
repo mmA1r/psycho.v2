@@ -14,7 +14,7 @@
         align-items: flex-start;
         justify-content: center;
 
-        width: 100vw;
+        width: 100%;
         
         height: auto;
         min-height: 100vh;

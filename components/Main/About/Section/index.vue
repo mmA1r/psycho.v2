@@ -6,7 +6,7 @@ defineProps<{
 }>();
 
 const headingRef = ref<HTMLElement | null>(null);
-const { isIntersecting: isHeadingSettled } = useIntersectionObserver(headingRef, { threshold: .8 });
+const { isIntersecting: isHeadingSettled } = useIntersectionObserver(headingRef, { threshold: 0.0 });
 </script>
 
 <template>
