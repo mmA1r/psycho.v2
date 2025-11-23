@@ -4,7 +4,7 @@
         target="_blank"
         rel="noopener noreferrer"
         tabindex="0"
-        :href="''"
+        :href="'https://wa.me/79829932579'"
     >
         <IconsWhatsApp />
         <span>Записаться</span>
