@@ -1,10 +1,13 @@
+@use "sass:list";
+@use "sass:string";
+
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 $font-main: 'Lora', serif;
-$font-link: 'DM Sans', sans-serif;
-$font-accent: 'Montserrat', sans-serif;
+//$font-link: 'DM Sans', sans-serif;
+//$font-accent: 'Montserrat', sans-serif;
 
 $padding_mobile: 16px;
 
@@ -58,19 +61,17 @@ $brd-radius: 20px;
     &::after { backdrop-filter: none; }
 }
 
-@mixin bg-image($path) {
+@mixin bg-image($folder, $size) {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     
-    background-image: url('#{$path}@2x.jpg'); // fallback
+    background-image: url('#{$folder}/#{$size}.jpg');
 
     background-image: image-set(
-        url('#{$path}@1x.avif') type('image/avif') 1x,
-        url('#{$path}@1x.webp') type('image/webp') 1x,
-        url('#{$path}@1x.jpg') type('image/jpg') 1x,
-        url('#{$path}@2x.avif') type('image/avif') 2x,
-        url('#{$path}@2x.webp') type('image/webp') 2x,
-        url('#{$path}@2x.jpg') type('image/jpg') 2x,
+        url('#{$folder}/#{$size}.webp') type('image/webp') 1x,
+        url('#{$folder}/#{$size}.jpg') type('image/jpg') 1x,
+        url('#{$folder}/#{$size * 2}.webp') type('image/webp') 2x,
+        url('#{$folder}/#{$size * 2}.jpg') type('image/jpg') 2x,
     );
 }

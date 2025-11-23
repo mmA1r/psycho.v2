@@ -3,9 +3,11 @@ export interface EducationItemDetail {
     text: string;
 }
 
+export interface Diploma { folder: string, alt: string }
+
 export interface EducationSectionProps {
     heading: string;
     year: string;
     info: EducationItemDetail[];
-    diplomaImage?: string;
+    diploma?: Diploma;
 }

@@ -18,12 +18,13 @@
                     text: 'бакалавр'
                 }
             ],
-            diplomaImage: '/diplomas/lonely_rooftop_sunset_by_bogi380_djp6cxx-fullview.jpg'
+            diploma: { folder: '/diplomas/bachelor_diploma', alt: 'Диплом бакалавра' }
         },
         {
             heading: 'Курсы повышения квалификации «Исследования и консультативная практика в психологии»',
             year: 'Год получения: 2022',
-            info: []
+            info: [],
+            diploma: { folder: '/diplomas/training_courses', alt: 'Сертификат повышения квалификации' }
         },
         {
             heading: 'Федеральное государственное автономное образовательное учреждение высшего образования «Национальный исследовательский университет «Высшая школа экономики»',
@@ -37,12 +38,14 @@
                     heading: 'Квалификация:',
                     text: 'магистр'
                 },
-            ]
+            ],
+            diploma: { folder: '/diplomas/master_diploma', alt: 'Диплом магистра' }
         },
         {
-            heading: 'GLE-International  Existential-analytical and logotherapeutic counselling and accompaniment',
+            heading: 'GLE-International Existential-analytical and logotherapeutic counselling and accompaniment',
             year: 'Год получения: 2024',
-            info: []
+            info: [],
+            diploma: { folder: '/diplomas/gle_cert_2024', alt: 'Сертификат GLE-International' }
         },
         {
             heading: 'GLE-International Existential-analytical and logotherapeutic psychotherapy',

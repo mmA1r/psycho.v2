@@ -47,6 +47,6 @@
             opacity: 1;
         }
 
-        >h2 { font-size: 1.5em; }
+        >h2 { font-size: 1.5em; font-family: $font-main; }
     }
 </style>

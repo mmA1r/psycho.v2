@@ -6,7 +6,7 @@
         tabindex="0"
         :href="''"
     >
-        <IconsTelegram />
+        <IconsWhatsApp />
         <span>Записаться</span>
     </NuxtLink>
 </template>

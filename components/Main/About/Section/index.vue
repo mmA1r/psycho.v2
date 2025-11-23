@@ -60,6 +60,8 @@ const { isIntersecting: isHeadingSettled } = useIntersectionObserver(headingRef,
             clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
             z-index: 2;
 
+            font-family: $font-main;
+
             transition: clip-path $ease-duration;
 
             >* {

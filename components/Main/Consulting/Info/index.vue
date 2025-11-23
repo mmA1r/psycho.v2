@@ -22,10 +22,9 @@
             </div>
         </div>
         <div class="consulting-info__image-block">
-            <NuxtImg
-                class="consulting-info__image"
-                src="" 
-                :alt="''" 
+            <FunctionalImage
+                folder="/method"
+                alt="Книга"
             />
         </div>
     </section>
@@ -87,11 +86,24 @@
         }
 
         &__image-block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             width: 100%;
             max-width: 400px;
             border-radius: inherit;
             background-color: var(--color__background);
             padding: 16px;
+
+            :deep(picture) {
+                overflow: hidden;
+                border-radius: inherit;
+                width: 100%;
+                height: 100%;
+
+                >img { object-fit: cover; }
+            }
         }
 
         &__image {

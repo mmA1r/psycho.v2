@@ -1,20 +1,20 @@
 <script lang='ts' setup>
-import { type EducationSectionProps } from 'types/education';
-import { MainAboutEducationItemDiploma } from '#components';
+import { type EducationSectionProps, type Diploma } from 'types/education';
+import { FunctionalImage } from '#components';
 
 defineProps<EducationSectionProps>();
 
 const modal = useModalStore();
 
-function showDiploma(path: string) {
-    modal.open(MainAboutEducationItemDiploma, { src: path });
+function showDiploma(diploma: Diploma) {
+    modal.open(FunctionalImage, diploma);
 }
 </script>
 
 <template>
     <div 
-        :class="['education-block__item', { clickable: diplomaImage }]"
-        @click="diplomaImage ? showDiploma(diplomaImage as string) : () => {}"
+        :class="['education-block__item', { clickable: diploma }]"
+        @click="diploma ? showDiploma(diploma) : () => {}"
     >
         <dt class="education-block__heading">{{ heading }}</dt>
         <dd
@@ -24,7 +24,7 @@ function showDiploma(path: string) {
             <strong>{{ item.heading }}</strong>
             {{ item.text }}
         </dd>
-        <dd class="education-block__year"><span>{{ year }}</span><span v-if="diplomaImage" class="education-block__show-image">Показать диплом</span></dd>
+        <dd class="education-block__year"><span>{{ year }}</span><span v-if="diploma" class="education-block__show-image">Показать диплом</span></dd>
     </div>
 </template>
 

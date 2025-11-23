@@ -84,7 +84,7 @@
 
             >button {
                 padding: 8px;
-                color: var(--color__accent_dark);
+                color: var(--color__background_dark);
             }
         }
     }

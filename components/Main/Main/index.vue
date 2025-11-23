@@ -66,11 +66,11 @@
         }
 
         @include mobile {
-            @include bg-image('/assets/img/main/main_mobile');
+            @include bg-image('/main_mobile', 768);
         }
 
         @include desktop {
-            @include bg-image('/assets/img/main/main_desktop');
+            @include bg-image('/main_desktop', 1024);
             background-size: contain;
         }
     }
