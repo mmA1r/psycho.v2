@@ -4,7 +4,7 @@
         target="_blank"
         rel="noopener noreferrer"
         tabindex="0"
-        :href="'https://wa.me/79829932579'"
+        :href="'https://t.me/ekaterina8matveeva'"
     >
         <IconsWhatsApp />
         <span>Записаться</span>
