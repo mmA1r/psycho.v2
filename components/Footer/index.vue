@@ -10,7 +10,7 @@
             </FooterColumn>
         </div>
         <span class="footer__rights">
-            © 2025 Екатерина Матвеева.
+            © 2026 Екатерина Матвеева.
         </span>
     </footer>
 </template>
