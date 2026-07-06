@@ -23,11 +23,17 @@
     // time
     --color-transition-duration: #{$anim-duration};
     --color-transition-ease: ease;
+    --hover-transition-duration: #{$ease-duration};
     
     --anim-duration: #{$anim-duration};
 }
 
 html {
+    background-color: var(--color__background);
+}
+
+body {
+    color: var(--color__primary);
     background-color: var(--color__background);
 }
 

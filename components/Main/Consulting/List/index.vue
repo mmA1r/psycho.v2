@@ -1,17 +1,7 @@
 <script lang='ts' setup>
     const contentBlockRef = ref<HTMLElement | null>(null);
     const { isIntersecting } = useIntersectionObserver(contentBlockRef);
-    const data = [
-        'Личностные кризисы (возрастные и социальные)',
-        'Зависимости',
-        'Выгорание (профессиональное и эмоциональное)',
-        'Партнерские взаимоотношения',
-        'Взаимоотношения с родителями',
-        'Профессиональная реализация',
-        'Эмоциональные проблемы',
-        'Самопознание',
-        'Работа с экзистенциальными данностями',
-    ];
+    const { t } = useLocale();
 </script>
 
 <template>
@@ -20,10 +10,10 @@
         ref="contentBlockRef"
         :class="['consulting-list__wrapper', { settled: isIntersecting }]"
     >
-        <h3 class="consulting__heading_sub">Запросы, с которыми я работаю</h3>
+        <h3 class="consulting__heading_sub">{{ t.consulting.listHeading }}</h3>
         <ul class="consulting__list">
             <li 
-                v-for="(item, index) in data" :key="index"
+                v-for="(item, index) in t.consulting.requests" :key="index"
                 :style="{ '--item-index': index+1 }"
             > {{ item }} </li>
         </ul>

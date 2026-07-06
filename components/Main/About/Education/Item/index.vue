@@ -5,6 +5,7 @@ import { FunctionalImage } from '#components';
 defineProps<EducationSectionProps>();
 
 const modal = useModalStore();
+const { t } = useLocale();
 
 function showDiploma(diploma: Diploma) {
     modal.open(FunctionalImage, diploma);
@@ -24,7 +25,7 @@ function showDiploma(diploma: Diploma) {
             <strong>{{ item.heading }}</strong>
             {{ item.text }}
         </dd>
-        <dd class="education-block__year"><span>{{ year }}</span><span v-if="diploma" class="education-block__show-image">Показать диплом</span></dd>
+        <dd class="education-block__year"><span>{{ year }}</span><span v-if="diploma" class="education-block__show-image">{{ diplomaLabel ?? t.about.education.diplomaLabel }}</span></dd>
     </div>
 </template>
 

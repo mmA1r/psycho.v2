@@ -1,42 +1,43 @@
 <script lang='ts' setup>
     import type { AppointmentItem } from 'types/appointment';
-    import { IconsClock, IconsMap, IconsPercent, IconsWallet } from '#components';
+    import { IconsClock, IconsOnline, IconsPercent, IconsWallet } from '#components';
 
     const contentBlockRef = ref<HTMLElement | null>(null);
     const { isIntersecting } = useIntersectionObserver(contentBlockRef, { threshold: .4 });
+    const { t } = useLocale();
 
-    const items: Array<AppointmentItem> = [
+    const items = computed<Array<AppointmentItem>>(() => [
         {
-            title: 'Место проведения',
-            text: 'Онлайн или г. Москва, Тетеринский переулок, 12',
-            icon: IconsMap,
+            title: t.value.consulting.appointment.placeTitle,
+            text: t.value.consulting.appointment.placeText,
+            icon: IconsOnline,
         },
         {
-            title: 'Длительность',
-            text: 'Онлайн-консультация длится 55 минут',
+            title: t.value.consulting.appointment.durationTitle,
+            text: t.value.consulting.appointment.durationText,
             icon: IconsClock
         },
         {
-            title: 'Стоимость',
-            text: 'Стоимость одной сессии 6000 рублей или эквивалент этой суммы в евро или долларах',
+            title: t.value.consulting.appointment.costTitle,
+            text: t.value.consulting.appointment.costText,
             icon: IconsWallet,
             additions: [
                 {
-                    title: 'Правила в случае несвоевременной отмены или переноса консультации',
-                    paragraph: 'Если вы отменяете или переносите консультацию менее, чем за 24 часа, то вы оплачиваете 100% от стоимости консультации'
+                    title: t.value.consulting.appointment.cancelTitle,
+                    paragraph: t.value.consulting.appointment.cancelText
                 },
                 {
-                    title: 'Оплата иностранными картами',
-                    paragraph: 'Оплата консультаций возможна как российскими, так и иностранными картами'
+                    title: t.value.consulting.appointment.paymentTitle,
+                    paragraph: t.value.consulting.appointment.paymentText
                 },
             ]
         },
         {
-            title: 'Акции',
-            text: 'Для постоянных клиентов доступны более выгодные условия.',
+            title: t.value.consulting.appointment.discountTitle,
+            text: t.value.consulting.appointment.discountText,
             icon: IconsPercent
         },
-    ];  
+    ]);
 </script>
 
 <template>
@@ -46,7 +47,7 @@
         class="consulting__appointment"
         :class="{ settled: isIntersecting }"
     >
-        <h3 class="consulting-appointment__heading">Запись</h3>
+        <h3 class="consulting-appointment__heading">{{ t.consulting.appointment.heading }}</h3>
         <ul>
             <MainConsultingAppointmentItem
                 v-for="(item, index) in items" :key="index"
@@ -60,6 +61,10 @@
 
 <style lang='scss' scoped>
     .consulting__appointment {
+        position: relative;
+
+        width: 100%;
+        
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -91,9 +96,24 @@
             }
 
             @include mobile {
+                width: 100%;
+
                 display: flex;
                 flex-direction: column;
+                align-items: stretch;
                 gap: 24px;
+
+                >li {
+                    width: 100%;
+
+                    transform: translateY(24px);
+                }
+            }
+        }
+
+        &.settled > ul > li {
+            @include mobile {
+                transform: translateY(0);
             }
         }
     }

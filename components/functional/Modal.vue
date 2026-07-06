@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const modal = useModalStore();
 const modalRef = ref<HTMLElement | null>(null);
+const { t } = useLocale();
 
 watch(() => modal.isOpen, (isOpen) => {
     if (isOpen) {
@@ -27,7 +28,7 @@ watch(() => modal.isOpen, (isOpen) => {
                 <div class="modal__container" role="document">
                     <button
                         class="modal__close-button"
-                        aria-label="Закрыть модальное окно"
+                        :aria-label="t.modal.close"
                         @click="modal.close"
                     >
                         <IconsCross />

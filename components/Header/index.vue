@@ -13,7 +13,7 @@
             <template v-if="isSpecialHeader">
                 <template v-if="!isMobile">
                     <IconsAnimatedLotus class="header__logo"/>
-                    <HeaderSideContextLinks />
+                    <HeaderSideContextLinks class="header__side" />
                 </template>
                 <template v-else>
                     <button
@@ -38,7 +38,7 @@
                 </template>
                 <template v-else>
                     <IconsAnimatedLotus class="header__logo"/>
-                    <HeaderNav />
+                    <HeaderNav class="header__nav" />
                 </template>
             </template>
         </div>
@@ -71,21 +71,44 @@
             border-radius: inherit;
             border-bottom: 1px solid var(--color__primary);
 
-            >* {
-                height: 100%;
-                aspect-ratio: 1;
-
-                &:last-child {
-                    position: absolute;
-                    left: 50%;
-                    transform: translateX(-50%);
-                }
-            }
-
             >button {
                 padding: 8px;
-                color: var(--color__background_dark);
+                color: var(--color__primary);
             }
+        }
+
+        &__logo,
+        &__button {
+            height: 100%;
+            aspect-ratio: 1;
+        }
+
+        &__button {
+            z-index: 1;
+        }
+
+        &__logo {
+            @include mobile {
+                position: absolute;
+                left: 50%;
+
+                transform: translateX(-50%);
+            }
+        }
+
+        &__nav {
+            position: absolute;
+            left: 50%;
+
+            height: 100%;
+
+            transform: translateX(-50%);
+        }
+
+        &__side {
+            height: 100%;
+
+            margin-left: auto;
         }
     }
 </style>

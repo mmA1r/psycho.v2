@@ -1,6 +1,7 @@
 <script lang='ts' setup>
     const contentBlockRef = ref<HTMLElement | null>(null);
     const { isIntersecting } = useIntersectionObserver(contentBlockRef);
+    const { t } = useLocale();
 </script>
 
 <template>
@@ -9,7 +10,7 @@
             <header
                 ref="contentBlockRef"
                 :class="['consulting__heading', { settled: isIntersecting }]"
-            ><h2>Консультация</h2></header>
+            ><h2>{{ t.consulting.heading }}</h2></header>
             <MainConsultingList />
             <MainConsultingInfo />
             <MainConsultingAppointment />

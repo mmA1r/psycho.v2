@@ -5,6 +5,10 @@ export const useMenuStore = defineStore('menu', () => {
         isOpen.value = !isOpen.value;
     };
 
+    const close = () => {
+        isOpen.value = false;
+    };
+
     if (typeof window !== 'undefined') {
         watch(isOpen, (open) => {
             document.body.classList.toggle('no-scroll', open);
@@ -14,5 +18,5 @@ export const useMenuStore = defineStore('menu', () => {
         });
     }
 
-    return { isOpen, toggle }
+    return { isOpen, toggle, close }
 });

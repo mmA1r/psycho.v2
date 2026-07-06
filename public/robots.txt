@@ -1,2 +1,5 @@
 User-Agent: *
 Disallow:
+
+Host: wellbeingwithkate.com
+Sitemap: https://wellbeingwithkate.com/sitemap.xml

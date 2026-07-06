@@ -31,7 +31,10 @@
         padding: 8px;
 
         overflow: hidden;
-        transition: color $easing;
+        transition:
+            color var(--hover-transition-duration) ease,
+            background-color var(--hover-transition-duration) ease,
+            border-color var(--hover-transition-duration) ease;
 
         -webkit-tap-highlight-color: transparent;
         -webkit-appearance: none;

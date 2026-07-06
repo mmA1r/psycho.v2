@@ -2,8 +2,9 @@
     import { IconsAppointment, IconsPerson } from '#components';
     
     const route = useRoute();
-    const { toggle } = useMenuStore();
+    const menu = useMenuStore();
     const { isMobile } = useBreakpoint();
+    const { t } = useLocale();
 
     type NavItem = {
         title: string;
@@ -11,31 +12,37 @@
         icon?: Component
     }
 
-    const list: Array<NavItem> = [
+    const list = computed<Array<NavItem>>(() => [
         {
-            title: 'Обо мне',
+            title: t.value.nav.about,
             href: '#about',
             icon: IconsPerson
         },
         {
-            title: 'Консультация',
+            title: t.value.nav.consulting,
             href: '#consulting',
             icon: IconsAppointment
         },
-    ];
+    ]);
 
-    const specialList: Array<NavItem> = [
+    const specialList = computed<Array<NavItem>>(() => [
         {
-            title: 'Политика конфидециальности',
+            title: t.value.nav.privacy,
             href: '/privacy',
         },
         {
-            title: 'Главная',
+            title: t.value.nav.home,
             href: '/'
         },
-    ]
+    ]);
 
     const isSpecialHeader = computed(() => route.path !== '/');
+
+    function closeMobileMenu() {
+        if (isMobile.value) {
+            menu.close();
+        }
+    }
 </script>
 
 <template>
@@ -50,7 +57,7 @@
         <template v-else>
             <li class="nav-menu__item" v-for="(item, index) in list" :key="index">
                 <component v-if="isMobile && item.icon" :is="item.icon" />
-                <NuxtLink :to="{ path: route.path, hash: item.href }" @click="toggle">
+                <NuxtLink :to="{ path: route.path, hash: item.href }" @click="closeMobileMenu">
                     <span>{{ item.title }}</span>
                 </NuxtLink>
             </li>
@@ -109,8 +116,8 @@
         @include mobile {
             width: 100%;
             height: 50px;
-            border-bottom: 1px solid rgba(var(--color__background-rgb), .2);
-            color: var(--color__background);
+            border-bottom: 1px solid rgba(var(--color__primary-rgb), .12);
+            color: var(--color__primary);
 
             >svg {
                 padding: 12px;

@@ -1,3 +1,7 @@
+<script lang='ts' setup>
+    const { t } = useLocale();
+</script>
+
 <template>
     <NuxtLink
         class="consulting-appointment__link"
@@ -7,7 +11,7 @@
         :href="'https://t.me/ekaterina8matveeva'"
     >
         <IconsWhatsApp />
-        <span>Записаться</span>
+        <span>{{ t.consulting.appointment.link }}</span>
     </NuxtLink>
 </template>
 
@@ -29,8 +33,9 @@
         transition: 
             opacity $anim,
             transform $anim,
-            background-color $easing,
-            color $easing,
+            color var(--hover-transition-duration) ease,
+            background-color var(--hover-transition-duration) ease,
+            border-color var(--hover-transition-duration) ease
         !important;
 
         opacity: 0;
@@ -39,6 +44,15 @@
         >svg {
             width: 24px;
             height: 24px;
+        }
+
+        @include mobile {
+            width: fit-content;
+
+            padding: 14px 18px;
+            margin-top: 0;
+
+            font-size: 18px;
         }
 
         @include hover {

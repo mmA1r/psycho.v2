@@ -4,6 +4,7 @@
     const events = useEventStore();
     const route = useRoute();
     const { isMobile } = useBreakpoint();
+    const { t } = useLocale();
 
     const hero = ref<HTMLDivElement|null>(null);
 
@@ -32,10 +33,11 @@
         ref="hero"
     >
         <h1 class="text-hero__author">
-            Екатерина Матвеева
+            {{ t.hero.name }}
+            <span class="visually-hidden">{{ t.hero.hiddenSuffix }}</span>
         </h1>
         <p class="text-hero__title">
-            Исследуй себя и этот мир вместе со мной
+            {{ t.hero.title }}
         </p>
         <FunctionalAppointmentLink v-if="!isMobile"/>
     </div>
@@ -83,6 +85,18 @@
             font-size: 1.5rem;
             font-weight: 400;
             margin-top: .5rem;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         @include mobile {

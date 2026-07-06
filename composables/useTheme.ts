@@ -9,8 +9,23 @@ const VARS = [
     'color__background',
 ];
 
+const THEME_COLORS: Record<Theme, string> = {
+    light: '#fafafa',
+    dark: '#161b1f',
+};
+
 export const useTheme = () => {
-    const themeCookie = useCookie<Theme>(COOKIE_KEY);
+    const themeCookie = useCookie<Theme>(COOKIE_KEY, {
+        default: () => 'light',
+        sameSite: 'lax',
+    });
+    const themeColor = computed(() => THEME_COLORS[themeCookie.value]);
+
+    useHead({
+        meta: [
+            { name: 'theme-color', content: themeColor },
+        ],
+    });
 
     const toggleTheme = useDebounceFn(() => {
         const newTheme: Theme = themeCookie.value === 'dark' ? 'light' : 'dark';
@@ -22,6 +37,7 @@ export const useTheme = () => {
 
         const duration = parseFloat(style.getPropertyValue('--color-transition-duration')) || 0.3;
         const ease = style.getPropertyValue('--color-transition-ease').trim() || 'power1.inOut';
+        root.style.setProperty('--hover-transition-duration', '0s');
 
         for (const key of VARS) {
             const baseVar = `--${key}`;
@@ -36,7 +52,13 @@ export const useTheme = () => {
         gsap.to(root, {
             ...targets,
             duration,
-            ease
+            ease,
+            onComplete: () => {
+                root.style.removeProperty('--hover-transition-duration');
+            },
+            onInterrupt: () => {
+                root.style.removeProperty('--hover-transition-duration');
+            }
         });
     }, 300);
 

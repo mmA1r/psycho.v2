@@ -10,4 +10,5 @@ export interface EducationSectionProps {
     year: string;
     info: EducationItemDetail[];
     diploma?: Diploma;
+    diplomaLabel?: string;
 }

@@ -1,8 +1,10 @@
 <script lang='ts' setup>
-    const links = [{
-        tilte: 'Политика конфидециальности',
+    const { t } = useLocale();
+
+    const links = computed(() => [{
+        title: t.value.nav.privacy,
         href: '/privacy'
-    }]
+    }]);
 </script>
 
 <template>
@@ -10,7 +12,7 @@
         <ul>
             <li v-for="(item, index) in links" :key="index">
                 <NuxtLink :to="item.href">
-                    <span>{{ item.tilte }}</span>
+                    <span>{{ item.title }}</span>
                 </NuxtLink>
             </li>
         </ul>
@@ -19,19 +21,30 @@
 
 <style lang='scss' scoped>
     .footer__nav_user {
+        position: relative;
+
         display: flex;
         flex-direction: column;
+
         color: var(--color__background);
+    }
 
-        transition: color $easing;
+    .footer__nav_user li {
+        position: relative;
 
-        & li {
-            display: flex;
-            align-items: center;
-        }
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
 
+    .footer__nav_user a {
+        position: relative;
+
+        color: inherit;
+        transition: color var(--hover-transition-duration) ease;
+        
         @include hover {
-            color: var(--color__accent);
+            color: var(--color__accent_light);
         }
     }
 </style>

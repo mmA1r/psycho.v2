@@ -1,5 +1,6 @@
 <script lang='ts' setup>
     const route = useRoute();
+    const { t } = useLocale();
 
     const routeName = computed(() => route.name);
 </script>
@@ -10,11 +11,12 @@
             to="/privacy"
             class="header__side-link"
             :class="{ 'active': routeName === 'privacy' }"
-        >Политика конфидециальности</NuxtLink>
+        >{{ t.nav.privacy }}</NuxtLink>
         <NuxtLink 
             to="/"
             class="header__side-link"
-        >Главная</NuxtLink>
+        >{{ t.nav.home }}</NuxtLink>
+        <HeaderControls />
         <!--<NuxtLink to="/terms" class="header__side-link">Terms</NuxtLink>-->
     </nav>
 </template>
@@ -31,11 +33,15 @@
             justify-content: flex-end;
             gap: 12px;
             width: 100%;
+
+            :deep(.header-controls) {
+                width: auto;
+                margin-left: 8px;
+            }
         }
 
         &__side-link {
             color: var(--color__primary);
-            transition: color $easing;
 
             @include desktop {
                 &::after {

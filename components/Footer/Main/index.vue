@@ -1,12 +1,13 @@
 <script lang='ts' setup>
     const { links } = useSocialLinks();
+    const { t } = useLocale();
 </script>
 
 <template>
     <div class="footer__main">
         <div class="footer__logo">
             <IconsAnimatedLotus />
-            <span>Екатерина Матвеева</span>
+            <span>{{ t.hero.name }}</span>
         </div>
         <nav class="footer__links">
             <ul>
@@ -29,35 +30,60 @@
 </template>
 
 <style lang='scss' scoped>
-    .footer {
-        &__logo {
-            display: flex;
-            align-items: center;
-            color: var(--color__background);
+    .footer__main {
+        position: relative;
 
-            >a {
-                width: 50px;
-                height: 50px;
-            }
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 28px;
 
-            >span {
-                color: var(--color__accent_light);
-                height: fit-content;
-                margin-left: 8px;
-                font-weight: 600;
-            }
+        @include mobile {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
         }
-        
-        &__links {
-            width: 100%;
+    }
 
-            >ul {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                gap: 12px;
-            }
-        }
+    .footer__logo {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+
+        color: var(--color__background);
+    }
+
+    .footer__logo > a {
+        position: relative;
+
+        width: 50px;
+        height: 50px;
+    }
+
+    .footer__logo > span {
+        position: relative;
+
+        color: var(--color__accent_light);
+        font-weight: 600;
+    }
+    
+    .footer__links {
+        position: relative;
+
+        width: auto;
+    }
+
+    .footer__links > ul {
+        position: relative;
+
+        width: auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
     }
 </style>

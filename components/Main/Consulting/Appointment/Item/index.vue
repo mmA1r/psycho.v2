@@ -27,9 +27,13 @@
 
 <style lang='scss' scoped>
     .consulting__appointment-item {
+        position: relative;
+
+        width: 100%;
+
         display: flex;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 12px;
 
         >svg {
@@ -39,9 +43,26 @@
             width: $s;
             height: $s;
         }
+
+        @include mobile {
+            gap: 16px;
+
+            >svg {
+                $s: 44px;
+
+                min-width: $s;
+                min-height: $s;
+                width: $s;
+                height: $s;
+            }
+        }
     }
 
     .appointment-item__info {
+        position: relative;
+
+        min-width: 0;
+
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -51,10 +72,18 @@
 
         >h4 { font-weight: 600; }
 
+        >p {
+            width: 100%;
+        }
+
         >button {
             margin-top: 4px;
             font-size: 14px;
             color: var(--color__accent);
+        }
+
+        @include mobile {
+            flex: 1 1 auto;
         }
     }
 </style>

@@ -1,6 +1,7 @@
 <script lang='ts' setup>
     const infoRef = ref<HTMLElement | null>(null);
     const { isIntersecting } = useIntersectionObserver(infoRef, { threshold: .5 });
+    const { t } = useLocale();
 </script>
 
 <template>
@@ -9,22 +10,27 @@
         :class="['consulting__info', { settled: isIntersecting }]"
     >
         <div class="consulting-info__text-block">
-            <h3>О Методе</h3>
+            <h3>{{ t.consulting.method.heading }}</h3>
             <div class="consulting-info__paragraphs">
-                <p>Экзистенциальный анализ ставит целью помочь человеку прийти к внутреннему согласию, сказав четыре “ДА”:</p>
+                <p>{{ t.consulting.method.intro }}</p>
                 <ul>
-                    <li><p><strong>миру</strong> — “я могу быть” в тех условиях, которые есть</p></li>
-                    <li><p><strong>жизни</strong> — “мне нравится жить”</p></li>
-                    <li><p><strong>себе</strong> — “я имею право быть самим собой”</p></li>
-                    <li><p><strong>смыслу</strong> — “в этом есть смысл”</p></li>
+                    <li
+                        v-for="(item, index) in t.consulting.method.points"
+                        :key="index"
+                    ><p><strong>{{ item.heading }}</strong>{{ item.text }}</p></li>
                 </ul>
-                <p>И это движение к внутреннему согласию - неотъемлемая часть работы, тот фон и то русло, по которому мы движемся в психотерапевтическом процессе.</p>
+                <p>{{ t.consulting.method.outro }}</p>
             </div>
         </div>
         <div class="consulting-info__image-block">
             <FunctionalImage
                 folder="/method"
-                alt="Книга"
+                :widths="[320, 480, 640]"
+                sizes="(max-width: 767px) calc(100vw - 64px), 400px"
+                :alt="t.consulting.method.imageAlt"
+                loading="eager"
+                fetchpriority="high"
+                :fallback="false"
             />
         </div>
     </section>
@@ -32,6 +38,10 @@
 
 <style lang='scss' scoped>
     .consulting__info {
+        --consulting-info-border-color: rgba(var(--color__primary-rgb), .12);
+
+        position: relative;
+
         display: flex;
         justify-content: center;
         align-items: stretch;
@@ -46,6 +56,7 @@
         }
 
         >div { 
+            border: 1px solid var(--consulting-info-border-color);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: opacity $anim;
             opacity: 0;
@@ -95,6 +106,10 @@
             border-radius: inherit;
             background-color: var(--color__background);
             padding: 16px;
+
+            :deep(.image-frame) {
+                border-radius: calc(#{$brd-radius} - 8px);
+            }
 
             :deep(picture) {
                 overflow: hidden;

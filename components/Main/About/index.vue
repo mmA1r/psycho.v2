@@ -1,19 +1,21 @@
 <script lang='ts' setup>
     import { IconsEducation, IconsPerson, MainAboutEducation, MainAboutPersonal } from '#components';
 
-    const info = [
+    const { t } = useLocale();
+
+    const info = computed(() => [
         {
             iconComponent: IconsPerson,
-            title: 'Обо мне',
+            title: t.value.about.sections.personal,
             content: MainAboutPersonal
         },
         {
             iconComponent: IconsEducation,
-            title: 'Образование',
+            title: t.value.about.sections.education,
             content: MainAboutEducation,
             reverse: true
         }
-    ];
+    ]);
 </script>
 
 <template>

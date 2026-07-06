@@ -1,10 +1,39 @@
 <script lang='ts' setup>
+const { locale, t } = useLocale();
 
+const title = computed(() => locale.value === 'ru'
+    ? 'Политика конфиденциальности | Екатерина Матвеева'
+    : 'Privacy Policy | Ekaterina Matveeva'
+);
+const description = computed(() => locale.value === 'ru'
+    ? 'Политика обработки персональных данных сайта wellbeingwithkate.com.'
+    : 'Personal data processing policy for wellbeingwithkate.com.'
+);
+const url = 'https://wellbeingwithkate.com/privacy';
+
+useSeoMeta({
+    title,
+    description,
+    robots: 'noindex, follow',
+    ogTitle: title,
+    ogDescription: description,
+    ogType: 'article',
+    ogUrl: url,
+});
+
+useHead({
+    htmlAttrs: {
+        lang: locale,
+    },
+    link: [
+        { rel: 'canonical', href: url },
+    ],
+});
 </script>
 
 <template>
     <article>
-        <h1>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</h1>
+        <h1>{{ t.nav.privacy }}</h1>
         <p>Политика обработки персональных данных (далее – Политика) разработана в соответствии с Федеральным законом от 27.07.2006. №152-ФЗ «О персональных данных» (далее – ФЗ-152).</p>
         <p>Настоящая Политика определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных Пользователей сайта с целью защиты прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.</p>
         <p>Настоящая политика размещена на сайте wellbeingwithkate.com в открытом доступе и предназначена для всех пользователей сайта. Пользуясь сайтом, пользователь подтверждает, что ознакомился с настоящей политикой и полностью согласен со всеми ее условиями.</p>

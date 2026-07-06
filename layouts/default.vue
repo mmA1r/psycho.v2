@@ -5,6 +5,7 @@
     </main>
     <Footer />
     <FunctionalModal />
+    <FunctionalCookieNotice />
 </template>
 
 <style lang='scss' scoped>
